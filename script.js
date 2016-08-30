@@ -1,4 +1,15 @@
- var first_card_clicked = null;
+
+//template
+
+//purpose:
+//param: none
+//local: none
+//global: none
+//functions called: none
+//returns: none
+
+
+var first_card_clicked = null;
  var second_card_clicked = null;
  var total_possible_matches = 9;
 
@@ -7,111 +18,96 @@
  var accuracy = 0;          //ratio of the number of matches to attempts
  var games_played = 0;      //the number of times the game has been played
 
- //purpose: apply the event handlers when the document is loaded
+ //purpose: set up the game board when the document is loaded
  //param: none
  //local: none
  //global: none
- //functions called: apply_event_handlers
+ //functions called: generateGameBoard
  //returns: none
  $(document).ready(function () {
      generateGameBoard();
-     apply_event_handlers;
  });
-
 
 
  //purpose: generates the game board by dynamically building cards from divs and assigning images randomly
  //param: none
- //local: initArray, randomArray, randomIndex, imgSource, generatedCard, generatedFront, generatedBack, generatedImg, backCardImg
+ //local: initArray, randomIndex, valueFromArray, singleCard
  //global: none
- //functions called: none
- //returns: imageSource
+ //functions called: createInitialArray, createOneCard
+ //returns: none
  function generateGameBoard(){
 //what i want: 3 rows. within each row 6 divs with class card
 // a div card, with div front and div back within. within div front an image. within div back an image
-     var initArray = [];
-     var randomArray = [];
+     var initArray = createInitialArray();      //create an array of numbers associated with the image on a card's front
 
-     //create subroutine out of this
+     //as the for loop runs the length of initArray diminishes leaving us with an exit from the loop
+     for(var i = 0; i < initArray.length;){
+         var randomIndex = Math.floor(Math.random()*initArray.length);      //choose a random index from initArray
+         var valueFromArray = initArray[randomIndex];                       //this random index points to a number associated with an image for the front of the card
+
+         var singleCard = createOneCard(valueFromArray);                    //create one card with the value associated with an image
+
+         initArray.splice(randomIndex, 1);                                  //remove the randomly chosen number from the array
+
+         //wrong but going to use it temporarily
+         $('div.row1').append(singleCard);
+
+
+         //idea: base the
+
+         //decide which row to place the card in
+         //won't work because i never changes it is always 0.
+         //I iterate through initArray by removing an element of the array with each pass
+         //in the n-th iteration of the loop, the length of randomArray
+
+         // if(Math.floor(i/6) === 0){
+         //     $('div.row1').append(singleCard);
+         // }else if(Math.floor(i/6) === 1){
+         //     $('div.row2').append(singleCard);
+         // }else{
+         //     $('div.row3').append(singleCard);
+         // }
+     }
+
+     apply_event_handlers();            //when the board is set up add the event handlers
+ }
+
+ //purpose: creates an array of doubled up numbers that will later point at an image for the front of a card
+ //param: none
+ //local: none
+ //global: none
+ //functions called: none
+ //returns: initArray
+ function createInitialArray() {
+     var initArray = [];
      for(var i = 0; i < total_possible_matches; i++){
          for(var j = 0; j < 2; j++){
              initArray.push(i);
          }
      }
-
-     //as the for loop runs the length of initArray diminishes leaving us with an exit from the loop
-     for(var i = 0; i < initArray.length;){
-         var randomIndex = Math.floor(Math.random()*initArray.length);
-         var valueFromArray = initArray[randomIndex];
-
-         var theCard = createOneCard(valueFromArray);
-
-         initArray.splice(randomIndex, 1);
-
-         //decide which row to place the card in
-         //won't work because i never changes it is always 0.
-         //I iterate through initArray by removing an element of the array with each pass
-         if(Math.floor(i/6) === 0){
-             $('div.row1').append(generatedCard);
-         }else if(Math.floor(i/6) === 1){
-             $('div.row2').append(generatedCard);
-         }else{
-             $('div.row3').append(generatedCard);
-         }
-     }
+     return initArray;
  }
 
- //purpose:
- //param: none
- //local: none
+ //purpose: creates a card DOM element by appending images and divs with class to a div with class card
+ //param: valueFromArray - a random number chosen from an array that identifies which picture the card front should have
+ //local: imgSource, generatedCard, generatedFront, generatedBack, frontCardImg, backCardImg
  //global: none
- //functions called: none
- //returns: none
- function createInitialArray(initialArray) {
-
- }
-
- //purpose:
- //param: none
- //local: none
- //global: none
- //functions called: none
- //returns: none
+ //functions called: findImageSource
+ //returns: generatedCard - the DOM element
 function createOneCard(valueFromArray){
-    var theCardElt = null;
     var imgSource = findImageSource(valueFromArray);
     var generatedCard = $('<div>').addClass('card');
     var generatedFront = $('<div>').addClass('front');
     var generatedBack = $('<div>').addClass('back');
-    var generatedImg = $('<img>');
-    var backCardImg = $('<img>');
+    var frontCardImg = $('<img>').attr('src', imgSource);
+    var backCardImg = $('<img>').attr('src', 'resources/nps_logo_transparent.png');
 
-    generatedImg.attr('src', imgSource);
-    backCardImg.attr('src', 'resources/nps_logo_transparent.png');
-
-
-    $(generatedFront).append(generatedImg);
+    $(generatedFront).append(frontCardImg);
     $(generatedBack).append(backCardImg);
     $(generatedCard).append(generatedFront, generatedBack);
 
+    return generatedCard;
 }
-
-
- //purpose:
- //param: none
- //local: none
- //global: none
- //functions called: none
- //returns: none
-
-
-
-
-
-
-
-
-
 
  //purpose: based on an input, determines which image a card's front should have
  //param: valueFromArray
