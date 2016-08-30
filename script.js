@@ -13,7 +13,87 @@
  //global: none
  //functions called: apply_event_handlers
  //returns: none
- $(document).ready(apply_event_handlers);
+ $(document).ready(function () {
+     generateGameBoard();
+     apply_event_handlers;
+ });
+
+
+ //generate game board
+ function generateGameBoard(){
+//what i want: 3 rows. within each row 6 divs with class card
+// a div card, with div front and div back within. within div front an image. within div back an image
+     var initArray = [];
+     var randomArray = [];
+
+     //create subroutine out of this
+     for(var i = 0; i < total_possible_matches; i++){
+         for(var j = 0; j < 2; j++){
+             initArray.push(i);
+         }
+     }
+
+     //as the for loop runs the length of initArray diminishes leaving us with an exit from the loop
+     for(var i = 0; i < initArray.length;){
+         var randomIndex = Math.floor(Math.random()*initArray.length);
+         var valueFromArray = initArray[randomIndex];
+         var imgSource = null;
+         var generatedCard = $('<div>').addClass('card');
+         var generatedFront = $('<div>').addClass('front');
+         var generatedBack = $('<div>').addClass('back');
+         var generatedImg = $('<img>');
+         var backCardImg = $('<img>');
+
+         //i can definitely put this into a separate subroutine
+         switch(valueFromArray){
+             case 0:
+                 imgSource = 'resources/National_Park_Quarters/Acadia.jpg';
+                 break;
+             case 1:
+                 imgSource = 'resources/National_Park_Quarters/Arches.jpg';
+                 break;
+             case 2:
+                 imgSource = 'resources/National_Park_Quarters/Everglades.jpg';
+                 break;
+             case 3:
+                 imgSource = 'resources/National_Park_Quarters/Grand_Canyon.jpg';
+                 break;
+             case 4:
+                 imgSource = 'resources/National_Park_Quarters/Hot_Springs.jpg';
+                 break;
+             case 5:
+                 imgSource = 'resources/National_Park_Quarters/Olympic.jpg';
+                 break;
+             case 6:
+                 imgSource = 'resources/National_Park_Quarters/Shenandoah.jpg';
+                 break;
+             case 7:
+                 imgSource = 'resources/National_Park_Quarters/Yellowstone.jpg';
+                 break;
+             default:
+                 imgSource = 'resources/National_Park_Quarters/Yosemite.jpg';
+         }
+
+         generatedImg.attr('src', imgSource);
+         backCardImg.attr('src', 'resources/nps_logo_transparent.png');
+         initArray.splice(randomIndex, 1);
+
+         $(generatedFront).append(generatedImg);
+         $(generatedBack).append(backCardImg);
+         $(generatedCard).append(generatedFront, generatedBack);
+
+         //decide which row to place the card in
+         if(Math.floor(i/6) === 0){
+             $('.row1').append(generatedCard);
+         }else if(Math.floor(i/6) === 1){
+             $('.row2').append(generatedCard);
+         }else{
+             $('.row3').append(generatedCard);
+         }
+     }
+ }
+
+
 
  //purpose: handles the events that either a div with class card is clicked or the reset button is clicked
  //param: none
