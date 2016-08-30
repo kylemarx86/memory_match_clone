@@ -79,8 +79,9 @@ header img{
     height: 100%;
     /*want width to be set based on the ratios of image*/
     width: 120px;
-    /*border: 1px solid black;*/
     display:inline-block;
+    /*border: 1px solid black;*/
+    border-radius: 10px;
 }
 .front {
     position: absolute;
@@ -89,6 +90,8 @@ header img{
     display: inline-block;
     vertical-align: middle;
     background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
 }
 .front img{
     position: absolute;
@@ -105,6 +108,8 @@ header img{
     height: 100%;
     width: 100%;
     background-color: saddlebrown;
+    border: 1px solid black;
+    border-radius: 10px;
 }
 .back img{
     position: absolute;
