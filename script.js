@@ -46,29 +46,17 @@ var first_card_clicked = null;
          var valueFromArray = initArray[randomIndex];                       //this random index points to a number associated with an image for the front of the card
 
          var singleCard = createOneCard(valueFromArray);                    //create one card with the value associated with an image
-
          initArray.splice(randomIndex, 1);                                  //remove the randomly chosen number from the array
 
-         //wrong but going to use it temporarily
-         $('div.row1').append(singleCard);
-
-
-         //idea: base the
-
-         //decide which row to place the card in
-         //won't work because i never changes it is always 0.
-         //I iterate through initArray by removing an element of the array with each pass
-         //in the n-th iteration of the loop, the length of randomArray
-
-         // if(Math.floor(i/6) === 0){
-         //     $('div.row1').append(singleCard);
-         // }else if(Math.floor(i/6) === 1){
-         //     $('div.row2').append(singleCard);
-         // }else{
-         //     $('div.row3').append(singleCard);
-         // }
+         //idea: base the row to append the cards to on the length of the init array. As more cards are removed we should be getting into later rows
+         if(Math.floor(initArray.length / 6) === 2){
+             $('div.row1').append(singleCard);
+         }else if(Math.floor(initArray.length /6) === 1){
+             $('div.row2').append(singleCard);
+         }else{
+             $('div.row3').append(singleCard);
+         }
      }
-
      apply_event_handlers();            //when the board is set up add the event handlers
  }
 
