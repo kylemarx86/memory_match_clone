@@ -7,7 +7,7 @@ header{
     top:0;
     height: 15%;
     width: 100%;
-    background-color: #c88453;
+    background-color: #2d4b1e;
     color: white;
     text-align: center;
 }
@@ -32,7 +32,7 @@ header img{
     left: 0;
     height: 85%;
     width: 200px;
-    background-color: #496647;
+    background-color: #99542c;
 }
 .label{
     height: 30px;
@@ -45,7 +45,7 @@ header img{
 .value{
     height: 60px;
     width: 100%;
-    background-color: green;
+    background-color: white;
 }
 #stats input{
     display: block;
@@ -60,7 +60,7 @@ header img{
     height: 85%;
     width: calc(100% - 200px);
     padding: 10px;
-    background-color: #99542c;
+    background-color: #c56c39;
 }
 .row{
     position: relative;
@@ -80,6 +80,7 @@ header img{
     /*want width to be set based on the ratios of image*/
     width: 120px;
     display:inline-block;
+    margin: 5px;
     /*border: 1px solid black;*/
     border-radius: 10px;
 }
