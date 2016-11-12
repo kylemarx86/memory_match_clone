@@ -48,14 +48,15 @@ var first_card_clicked = null;
          var singleCard = createOneCard(valueFromArray);                    //create one card with the value associated with an image
          initArray.splice(randomIndex, 1);                                  //remove the randomly chosen number from the array
 
-         //idea: base the row to append the cards to on the length of the init array. As more cards are removed we should be getting into later rows
-         if(Math.floor(initArray.length / 6) === 2){
-             $('div.row1').append(singleCard);
-         }else if(Math.floor(initArray.length /6) === 1){
-             $('div.row2').append(singleCard);
-         }else{
-             $('div.row3').append(singleCard);
-         }
+         $('#game-area').append(singleCard);
+         // //idea: base the row to append the cards to on the length of the init array. As more cards are removed we should be getting into later rows
+         // if(Math.floor(initArray.length / 6) === 2){
+         //     $('div.row1').append(singleCard);
+         // }else if(Math.floor(initArray.length /6) === 1){
+         //     $('div.row2').append(singleCard);
+         // }else{
+         //     $('div.row3').append(singleCard);
+         // }
      }
      apply_event_handlers();            //when the board is set up add the event handlers
  }
