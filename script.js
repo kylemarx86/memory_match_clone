@@ -106,31 +106,31 @@ function createOneCard(valueFromArray){
 function findImageSource(valueFromArray) {
     switch(valueFromArray){
         case 0:
-            imageSource = 'resources/National_Park_Quarters/Acadia.jpg';
+            imageSource = 'resources/National_Park_Quarters/Acadia.png';
             break;
         case 1:
-            imageSource = 'resources/National_Park_Quarters/Arches.jpg';
+            imageSource = 'resources/National_Park_Quarters/Arches.png';
             break;
         case 2:
-            imageSource = 'resources/National_Park_Quarters/Everglades.jpg';
+            imageSource = 'resources/National_Park_Quarters/Everglades.png';
             break;
         case 3:
-            imageSource = 'resources/National_Park_Quarters/Grand_Canyon.jpg';
+            imageSource = 'resources/National_Park_Quarters/Grand_Canyon.png';
             break;
         case 4:
-            imageSource = 'resources/National_Park_Quarters/Hot_Springs.jpg';
+            imageSource = 'resources/National_Park_Quarters/Hot_Springs.png';
             break;
         case 5:
-            imageSource = 'resources/National_Park_Quarters/Olympic.jpg';
+            imageSource = 'resources/National_Park_Quarters/Olympic.png';
             break;
         case 6:
-            imageSource = 'resources/National_Park_Quarters/Shenandoah.jpg';
+            imageSource = 'resources/National_Park_Quarters/Shenandoah.png';
             break;
         case 7:
-            imageSource = 'resources/National_Park_Quarters/Yellowstone.jpg';
+            imageSource = 'resources/National_Park_Quarters/Yellowstone.png';
             break;
         default:
-            imageSource = 'resources/National_Park_Quarters/Yosemite.jpg';
+            imageSource = 'resources/National_Park_Quarters/Yosemite.png';
     }
     return imageSource;
 }
