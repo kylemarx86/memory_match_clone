@@ -169,7 +169,7 @@ function apply_event_handlers(){
  //functions called: cardIsMatchedAlready, checkForTwoCards
  //returns: none
  function handleCardClicks(cardElement){
-     cardElement.children('.back').css('display',"none");
+     // cardElement.children('.back').css('display',"none");        //was initially enabled in working code
 
      if(!cardIsMatchedAlready(cardElement)) {   //is the card already part of a matched pair
          if (first_card_clicked === null) {         //is the first card empty
@@ -178,6 +178,7 @@ function apply_event_handlers(){
          }
          else if (!cardElement.hasClass('cardClicked')) {       //has the card already been clicked/revealed
              second_card_clicked = $(cardElement);              //assign the currently clicked card to the second card
+             cardElement.addClass('cardClicked');               //add flag stating the card has been clicked
              $('.card').off('click');                           //disables click while we check the two cards
          }
          checkForTwoCards();
