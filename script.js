@@ -89,11 +89,14 @@ function createSingleCard(valueFromArray){
     var generatedCard = $('<div>').addClass('card');
     var generatedFront = $('<div>').addClass('front');
     var generatedBack = $('<div>').addClass('back');
-    var frontCardImg = $('<img>').attr('src', imgSource);
-    var backCardImg = $('<img>').attr('src', 'resources/nps_logo_transparent.png');
+    generatedFront.css('background-image', 'url(' + imgSource + ')');
+    console.log(imgSource);
+    // generatedBack.attr('background-image', 'resources/nps_logo_transparent.png');
+    // var frontCardImg = $('<img>').attr('src', imgSource);
+    // var backCardImg = $('<img>').attr('src', 'resources/nps_logo_transparent.png');
 
-    $(generatedFront).append(frontCardImg);
-    $(generatedBack).append(backCardImg);
+    // $(generatedFront).append(frontCardImg);
+    // $(generatedBack).append(backCardImg);
     $(generatedCard).append(generatedFront, generatedBack);
 
     return generatedCard;
@@ -222,7 +225,7 @@ function apply_event_handlers(){
  //                 makeCardsReappear
  //returns: none
  function checkForMatches() {
-     if(first_card_clicked.find('.front img').attr('src') === second_card_clicked.find('.front img').attr('src')){
+     if(first_card_clicked.find('.front').attr('background-image') === second_card_clicked.find('.front').attr('background-image')){
          makeCardsMatch();
      }else{
          setTimeout(makeCardsReappear, 2000);

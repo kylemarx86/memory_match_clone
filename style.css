@@ -104,8 +104,10 @@ header img{
     -webkit-transition: -webkit-transform 0.5s;
     transition: transform 0.5s;
 }
+/*remember front of card has the coin image*/
 .front {
     background-color: white;
+    background-size: 100% 100%;
 }
 .front img{
     position: absolute;
@@ -120,9 +122,13 @@ header img{
     transform: rotateY(180deg);
     -webkit-transform: rotateY(180deg);
 }
+/*remember back of card has the NPS logo image*/
 .back {
     background-color: saddlebrown;
     z-index: 2;
+
+    background-image: url('resources/nps_logo_transparent.png');
+    background-size: 100% 100%;
 
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
