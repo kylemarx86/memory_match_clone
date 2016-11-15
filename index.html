@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Bootstrap link -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"
+          type="text/css"/>
+    <!-- link to jquery library -->
+    <link href="https://code.jquery.com/jquery-2.1.4.min.js"/>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <!-- link to Learning Fuze stylesheet -->
+    <link href="http://learning-fuze.github.io/memory_match/v0.1/script.js"/>
+    <!-- link to external stylesheet -->
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script src="script.js"></script>
+
+</head>
+<body>
+<!-- header container -->
+<!-- container holding general game info -->
+<!-- features to include: game logo, game title, settings link (nothing here yet), about link (link to about.html) -->
+<header>
+    <img src="resources/nps_logo_transparent.png">
+    <h1>National Parks Match Game</h1>
+    <h5><a target="_blank">Settings</a></h5>
+    <h5><a href="about.html">About the author</a></h5>
+    <!-- should i change this to about the game??? since it is moreso about the game and not me, the designer// regardless about the author sounds lame-->
+</header>
+
+<!-- stats container -->
+<!-- container to hold statistics and options for resetting these -->
+<!-- features to have: games played, attempts (times clicked on cards), accuracy (ratio of correct clicks to total clicks for current game), reset button -->
+<div id="stats">
+    <div class="games-played">
+        <div class="label">Games Played</div>
+        <div class="value"></div>
+    </div>
+    <div class="attempts">
+        <div class="label">Attempts</div>
+        <div class="value"></div>
+    </div>
+    <div class="accuracy">
+        <div class="label">Accuracy</div>
+        <div class="value"></div>
+    </div>
+    <input type="button" class="reset" value="Reset Game">
+</div>
+<!-- game area container -->
+<!-- the area where the game takes place -->
+<!-- features to include: 18 cards fronts and 18 card backs -->
+<div id="game-area">
+    <!-- create a card composed of front(on bottom) and back(layered on top)-->
+    <!--<div class="row row1"></div>-->
+    <!--<div class="row row2"></div>-->
+    <!--<div class="row row3"></div>-->
+
+    <div id="gameWon">
+        <h3>You won! What are you a park ranger, now?</h3>
+        <img src="resources/Junior_Ranger_logo.gif">
+    </div>
+</div>
+
+</body>
+</html>
