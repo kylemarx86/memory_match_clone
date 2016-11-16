@@ -90,7 +90,6 @@ function createSingleCard(valueFromArray){
     var generatedFront = $('<div>').addClass('front');
     var generatedBack = $('<div>').addClass('back');
     generatedFront.css('background-image', 'url(' + imgSource + ')');
-    // console.log(imgSource);
     $(generatedCard).append(generatedFront, generatedBack);
 
     return generatedCard;
