@@ -321,7 +321,8 @@ function applyEventHandlers(){
      displayStats();
      $('.back').css('display', 'initial');                  //makes all card back reappear
      $('.card').removeClass('cardClicked matched');         //makes all cards clickable once more by removing 'cardClicked' and 'matched' classes
-     $('.card').click(clickedCard($(this)));               //adds the click handler for the 'card' class
+     $('.card').off('click');                               //temporarily removes all click handlers, so that they won't fire twice when restarted
+     $('.card').click(clickedCard($(this)));                //adds the click handler for the 'card' class
      firstCardClicked = null;
      secondCardClicked = null;
      $('#gameWon').css('display', 'none');                  //reset win features
