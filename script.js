@@ -225,7 +225,13 @@ function apply_event_handlers(){
  //                 makeCardsReappear
  //returns: none
  function checkForMatches() {
-     if(first_card_clicked.find('.front').attr('background-image') === second_card_clicked.find('.front').attr('background-image')){
+     // console.log(first_card_clicked.find('.front'));
+     // console.log(second_card_clicked.find('.front'));
+     // console.log(first_card_clicked.css('background-image'));
+     // console.log(second_card_clicked.css('background-image'));
+     console.log(first_card_clicked.find('.front').css('background-image'));
+     console.log(second_card_clicked.find('.front').css('background-image'));
+     if(first_card_clicked.find('.front').css('background-image') === second_card_clicked.find('.front').css('background-image')){
          makeCardsMatch();
      }else{
          setTimeout(makeCardsReappear, 2000);
@@ -259,8 +265,15 @@ function apply_event_handlers(){
  //functions called: card_clicked
  //returns: none
  function makeCardsReappear() {
-     first_card_clicked.find('.back').css('display','initial');
-     second_card_clicked.find('.back').css('display','initial');
+     // //too drastic, overwrites other css, maybe no need for this after all
+     // first_card_clicked.find('.back').css('transform','rotateY(0deg)');
+     // first_card_clicked.find('.back').css('-webkit-transform','rotateY(0deg)');
+     // second_card_clicked.find('.back').css('transform','rotateY(0deg)');
+     // second_card_clicked.find('.back').css('-webkit-transform','rotateY(0deg)');
+
+
+     // first_card_clicked.find('.back').css('display','initial');      //worked for img tags
+     // second_card_clicked.find('.back').css('display','initial');
      first_card_clicked.removeClass('cardClicked');
      second_card_clicked.removeClass('cardClicked');
      first_card_clicked = null;
