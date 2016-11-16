@@ -107,7 +107,9 @@ header img{
 /*remember front of card has the coin image*/
 .front {
     background-color: white;
-    background-size: 100% 100%;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .front img{
     position: absolute;
@@ -155,6 +157,7 @@ header img{
     /*transition-duration: 0s;*/
     transform: rotateY(0deg);
     -webkit-transform: rotateY(0deg);
+    transition-duration: 0s;    /*new*/
 }
 .card.matched .back{
     visibility: hidden;     /*need some sort of resetting when game restarted*/
