@@ -63,6 +63,7 @@ header img{
     background-color: #c56c39;
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
 }
 .row{
     position: relative;
@@ -89,7 +90,7 @@ header img{
 /* hide back of pane during swap */
 .front, .back {
     position: absolute;
-    /*backface-visibility: hidden;*/
+    /*!*backface-visibility: hidden;*!  can't have because the background image on the front would be hidden*/
 
     height: 100%;
     width: 100%;
@@ -100,45 +101,47 @@ header img{
     top: 0;
     left: 0;
 
-
     -webkit-transition: -webkit-transform 0.5s;
     transition: transform 0.5s;
 }
+/*remember front of card has the coin image*/
 .front {
     background-color: white;
-}
-.front img{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    height: auto;
-    width: 100%;
-    margin: auto 0;
-    display: inline-block;
-    vertical-align: middle;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center;
 
-    transform: rotateY(180deg);
-    -webkit-transform: rotateY(180deg);
+    transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+    /*transition-duration: 0s;*/
 }
+/*remember back of card has the NPS logo image*/
 .back {
     background-color: saddlebrown;
     z-index: 2;
 
+    background-image: url('resources/nps_logo_transparent.png');
+    background-size: 100% 100%;
+
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
-.back img{
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    display: inline-block;
-    vertical-align: middle;
-}
+/*doesn't exist anymore*/
+/*.back img{*/
+    /*position: absolute;*/
+    /*height: 100%;*/
+    /*width: 100%;*/
+    /*display: inline-block;*/
+    /*vertical-align: middle;*/
+/*}*/
 .card.cardClicked .front {
     /*transform: rotateY(0deg);*/
     /*-webkit-transform: rotateY(0deg);*/
-    transform: rotateY(180deg);
-    -webkit-transform: rotateY(180deg);
+    transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+    /*transition-duration: ;*/
+    /*transform: rotateY(0deg);*/
+    /*-webkit-transform: rotateY(0deg);*/
 }
 .card.cardClicked .back {
     transform: rotateY(-180deg);
@@ -149,6 +152,7 @@ header img{
     /*transition-duration: 0s;*/
     transform: rotateY(0deg);
     -webkit-transform: rotateY(0deg);
+    transition-duration: 0s;    /*new*/
 }
 .card.matched .back{
     visibility: hidden;     /*need some sort of resetting when game restarted*/

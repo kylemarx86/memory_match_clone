@@ -9,9 +9,10 @@
 //returns: none
 
 
-var first_card_clicked = null;
+ var first_card_clicked = null;
  var second_card_clicked = null;
- var total_possible_matches = 9;
+ // var total_possible_matches = 9;
+ var total_possible_matches = 3;        //temp while testing
 
  var matches = 0;           //incrementer for the number of matches found
  var attempts = 0;          //incrementer for the number of attempted matches
@@ -33,7 +34,7 @@ var first_card_clicked = null;
  //param: none
  //local: initArray, randomIndex, valueFromArray, singleCard
  //global: none
- //functions called: createInitialArray, createOneCard
+ //functions called: createInitialArray, createSingleCard
  //returns: none
  function generateGameBoard(){
 //what i want: 3 rows. within each row 6 divs with class card
@@ -45,7 +46,7 @@ var first_card_clicked = null;
          var randomIndex = Math.floor(Math.random()*initArray.length);      //choose a random index from initArray
          var valueFromArray = initArray[randomIndex];                       //this random index points to a number associated with an image for the front of the card
 
-         var singleCard = createOneCard(valueFromArray);                    //create one card with the value associated with an image
+         var singleCard = createSingleCard(valueFromArray);                    //create one card with the value associated with an image
          initArray.splice(randomIndex, 1);                                  //remove the randomly chosen number from the array
 
          $('#game-area').append(singleCard);
@@ -83,16 +84,19 @@ var first_card_clicked = null;
  //global: none
  //functions called: findImageSource
  //returns: generatedCard - the DOM element
-function createOneCard(valueFromArray){
+function createSingleCard(valueFromArray){
     var imgSource = findImageSource(valueFromArray);
     var generatedCard = $('<div>').addClass('card');
     var generatedFront = $('<div>').addClass('front');
     var generatedBack = $('<div>').addClass('back');
-    var frontCardImg = $('<img>').attr('src', imgSource);
-    var backCardImg = $('<img>').attr('src', 'resources/nps_logo_transparent.png');
+    generatedFront.css('background-image', 'url(' + imgSource + ')');
+    console.log(imgSource);
+    // generatedBack.attr('background-image', 'resources/nps_logo_transparent.png');
+    // var frontCardImg = $('<img>').attr('src', imgSource);
+    // var backCardImg = $('<img>').attr('src', 'resources/nps_logo_transparent.png');
 
-    $(generatedFront).append(frontCardImg);
-    $(generatedBack).append(backCardImg);
+    // $(generatedFront).append(frontCardImg);
+    // $(generatedBack).append(backCardImg);
     $(generatedCard).append(generatedFront, generatedBack);
 
     return generatedCard;
@@ -221,7 +225,13 @@ function apply_event_handlers(){
  //                 makeCardsReappear
  //returns: none
  function checkForMatches() {
-     if(first_card_clicked.find('.front img').attr('src') === second_card_clicked.find('.front img').attr('src')){
+     // console.log(first_card_clicked.find('.front'));
+     // console.log(second_card_clicked.find('.front'));
+     // console.log(first_card_clicked.css('background-image'));
+     // console.log(second_card_clicked.css('background-image'));
+     console.log(first_card_clicked.find('.front').css('background-image'));
+     console.log(second_card_clicked.find('.front').css('background-image'));
+     if(first_card_clicked.find('.front').css('background-image') === second_card_clicked.find('.front').css('background-image')){
          makeCardsMatch();
      }else{
          setTimeout(makeCardsReappear, 2000);
@@ -255,8 +265,15 @@ function apply_event_handlers(){
  //functions called: card_clicked
  //returns: none
  function makeCardsReappear() {
-     first_card_clicked.find('.back').css('display','initial');
-     second_card_clicked.find('.back').css('display','initial');
+     // //too drastic, overwrites other css, maybe no need for this after all
+     // first_card_clicked.find('.back').css('transform','rotateY(0deg)');
+     // first_card_clicked.find('.back').css('-webkit-transform','rotateY(0deg)');
+     // second_card_clicked.find('.back').css('transform','rotateY(0deg)');
+     // second_card_clicked.find('.back').css('-webkit-transform','rotateY(0deg)');
+
+
+     // first_card_clicked.find('.back').css('display','initial');      //worked for img tags
+     // second_card_clicked.find('.back').css('display','initial');
      first_card_clicked.removeClass('cardClicked');
      second_card_clicked.removeClass('cardClicked');
      first_card_clicked = null;
