@@ -80,7 +80,7 @@
 
  //purpose: creates a card DOM element by appending images and divs with class to a div with class card
  //param: valueFromArray - a random number chosen from an array that identifies which picture the card front should have
- //local: imgSource, generatedCard, generatedFront, generatedBack, frontCardImg, backCardImg
+ //local: imgSource, generatedCard, generatedFront, generatedBack
  //global: none
  //functions called: findImageSource
  //returns: generatedCard - the DOM element
@@ -90,13 +90,7 @@ function createSingleCard(valueFromArray){
     var generatedFront = $('<div>').addClass('front');
     var generatedBack = $('<div>').addClass('back');
     generatedFront.css('background-image', 'url(' + imgSource + ')');
-    console.log(imgSource);
-    // generatedBack.attr('background-image', 'resources/nps_logo_transparent.png');
-    // var frontCardImg = $('<img>').attr('src', imgSource);
-    // var backCardImg = $('<img>').attr('src', 'resources/nps_logo_transparent.png');
-
-    // $(generatedFront).append(frontCardImg);
-    // $(generatedBack).append(backCardImg);
+    // console.log(imgSource);
     $(generatedCard).append(generatedFront, generatedBack);
 
     return generatedCard;
@@ -245,7 +239,7 @@ function apply_event_handlers(){
  //functions called: gameIsWon, card_clicked
  //returns: none
  function makeCardsMatch() {
-     console.log('cards match');        //leave for now
+     // console.log('cards match');        //leave for now
      first_card_clicked.addClass('matched');
      second_card_clicked.addClass('matched');
      first_card_clicked.removeClass('cardClicked');
@@ -265,13 +259,6 @@ function apply_event_handlers(){
  //functions called: card_clicked
  //returns: none
  function makeCardsReappear() {
-     // //too drastic, overwrites other css, maybe no need for this after all
-     // first_card_clicked.find('.back').css('transform','rotateY(0deg)');
-     // first_card_clicked.find('.back').css('-webkit-transform','rotateY(0deg)');
-     // second_card_clicked.find('.back').css('transform','rotateY(0deg)');
-     // second_card_clicked.find('.back').css('-webkit-transform','rotateY(0deg)');
-
-
      // first_card_clicked.find('.back').css('display','initial');      //worked for img tags
      // second_card_clicked.find('.back').css('display','initial');
      first_card_clicked.removeClass('cardClicked');

@@ -110,10 +110,9 @@ header img{
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: center;
-
+    /*sets up front of card for the transition when clicked*/
     transform: rotateY(-180deg);
     -webkit-transform: rotateY(-180deg);
-    /*transition-duration: 0s;*/
 }
 /*remember back of card has the NPS logo image*/
 .back {
@@ -126,22 +125,9 @@ header img{
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
-/*doesn't exist anymore*/
-/*.back img{*/
-    /*position: absolute;*/
-    /*height: 100%;*/
-    /*width: 100%;*/
-    /*display: inline-block;*/
-    /*vertical-align: middle;*/
-/*}*/
 .card.cardClicked .front {
-    /*transform: rotateY(0deg);*/
-    /*-webkit-transform: rotateY(0deg);*/
     transform: rotateY(0deg);
     -webkit-transform: rotateY(0deg);
-    /*transition-duration: ;*/
-    /*transform: rotateY(0deg);*/
-    /*-webkit-transform: rotateY(0deg);*/
 }
 .card.cardClicked .back {
     transform: rotateY(-180deg);
@@ -149,13 +135,13 @@ header img{
     /*display: none;*/
 }
 .card.matched .front{
-    /*transition-duration: 0s;*/
+    /*performs the transition when clicked*/
     transform: rotateY(0deg);
     -webkit-transform: rotateY(0deg);
-    transition-duration: 0s;    /*new*/
+    transition-duration: 0s;     /*not sure if this is necessary*/
 }
 .card.matched .back{
-    visibility: hidden;     /*need some sort of resetting when game restarted*/
+    visibility: hidden;     /*need some sort of resetting when game restarted????*/
 }
 
 #gameWon{
