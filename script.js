@@ -11,8 +11,8 @@
 
  var firstCardClicked = null;
  var secondCardClicked = null;
- // var totalPossibleMatches = 9;
- var totalPossibleMatches = 2;        //temp while testing
+ var totalPossibleMatches = 9;
+ // var totalPossibleMatches = 2;        //temp while testing
 
  var matches = 0;           //incrementer for the number of matches found
  var attempts = 0;          //incrementer for the number of attempted matches
@@ -37,7 +37,7 @@
  //functions called: createInitialArray, createSingleCard
  //returns: none
  function initializeGameBoard(){
-     totalPossibleMatches = 2;        //temp while testing
+     totalPossibleMatches = 9;        //temp while testing
 
      matches = 0;
      attempts = 0;
@@ -346,3 +346,17 @@ function applyEventHandlers(){
      calculateAccuracy();
      displayStats();
  }
+
+
+// function initMap() {
+//     var CenterOfUSA = {lat: 38, lng: -97.5};
+//     //var CenterOfUSA = {lat: 39.828127, lng: -98.579404};
+//     var map = new google.maps.Map(document.getElementById('map'), {
+//         zoom: 4,
+//         center: CenterOfUSA
+//     });
+//     var marker = new google.maps.Marker({
+//         position: CenterOfUSA,
+//         map: map
+//     });
+// }
