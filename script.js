@@ -12,7 +12,7 @@
  var firstCardClicked = null;
  var secondCardClicked = null;
  // var totalPossibleMatches = 9;
- var totalPossibleMatches = 3;        //temp while testing
+ var totalPossibleMatches = 2;        //temp while testing
 
  var matches = 0;           //incrementer for the number of matches found
  var attempts = 0;          //incrementer for the number of attempted matches
@@ -23,10 +23,10 @@
  //param: none
  //local: none
  //global: none
- //functions called: generateGameBoard
+ //functions called: initializeGameBoard
  //returns: none
  $(document).ready(function () {
-     generateGameBoard();
+     initializeGameBoard();
  });
 
 
@@ -36,7 +36,16 @@
  //global: none
  //functions called: createInitialArray, createSingleCard
  //returns: none
- function generateGameBoard(){
+ function initializeGameBoard(){
+     totalPossibleMatches = 2;        //temp while testing
+
+     matches = 0;
+     attempts = 0;
+     accuracy = 0;
+
+     firstCardClicked = null;
+     secondCardClicked = null;
+
 //what i want: 3 rows. within each row 6 divs with class card
 // a div card, with div front and div back within. within div front an image. within div back an image
      var initArray = createInitialArray();      //create an array of numbers associated with the image on a card's front
@@ -49,15 +58,7 @@
          var singleCard = createSingleCard(valueFromArray);                    //create one card with the value associated with an image
          initArray.splice(randomIndex, 1);                                  //remove the randomly chosen number from the array
 
-         $('#game-area').append(singleCard);
-         // //idea: base the row to append the cards to on the length of the init array. As more cards are removed we should be getting into later rows
-         // if(Math.floor(initArray.length / 6) === 2){
-         //     $('div.row1').append(singleCard);
-         // }else if(Math.floor(initArray.length /6) === 1){
-         //     $('div.row2').append(singleCard);
-         // }else{
-         //     $('div.row3').append(singleCard);
-         // }
+         $('#cardArea').append(singleCard);
      }
      applyEventHandlers();            //when the board is set up add the event handlers
  }
@@ -203,8 +204,7 @@ function applyEventHandlers(){
  //returns: none
  function checkForTwoCards(){
      if(firstCardClicked && secondCardClicked) {
-         attempts++;                                //watch in debug
-         displayStats();
+         attempts++;
          checkForMatches();
      }
  }
@@ -217,12 +217,6 @@ function applyEventHandlers(){
  //                 makeCardsReappear
  //returns: none
  function checkForMatches() {
-     // console.log(firstCardClicked.find('.front'));
-     // console.log(secondCardClicked.find('.front'));
-     // console.log(firstCardClicked.css('background-image'));
-     // console.log(secondCardClicked.css('background-image'));
-     console.log(firstCardClicked.find('.front').css('background-image'));
-     console.log(secondCardClicked.find('.front').css('background-image'));
      if(firstCardClicked.find('.front').css('background-image') === secondCardClicked.find('.front').css('background-image')){
          //here's the set time out that Scott told me to look at
 
@@ -265,7 +259,9 @@ function applyEventHandlers(){
      secondCardClicked.removeClass('cardClicked');
      firstCardClicked = null;
      secondCardClicked = null;
+     displayStats();
      clickedCard();                                //readies click handler again
+
  }
 
  //purpose: checks with the game is won
@@ -276,7 +272,9 @@ function applyEventHandlers(){
  //returns: none
  function gameIsWon() {
      if(matches === totalPossibleMatches){
+         // console.log('winner');
          $("#gameWon").css('display','initial');
+         // $("#gameWon").css('display','inline-block');
      }
  }
 
@@ -292,7 +290,7 @@ function applyEventHandlers(){
  function displayStats() {
      // console.log('stats are to be displayed');
      calculateAccuracy();
-     $('.games-played .value').text(gamesPlayed);
+     $('.gamesPlayed .value').text(gamesPlayed);
      $('.attempts .value').text(attempts);
      $('.accuracy .value').text(accuracy);
  }
@@ -321,13 +319,19 @@ function applyEventHandlers(){
      gamesPlayed++;
      resetStats();
      displayStats();
-     $('.back').css('display', 'initial');                  //makes all card back reappear
-     $('.card').removeClass('cardClicked matched');         //makes all cards clickable once more by removing 'cardClicked' and 'matched' classes
+
+     $('#cardArea').empty();
+
+     // $('.back').css('display', 'initial');                  //makes all card back reappear
+     // $('.card').removeClass('cardClicked matched');         //makes all cards clickable once more by removing 'cardClicked' and 'matched' classes
      $('.card').off('click');                               //temporarily removes all click handlers, so that they won't fire twice when restarted
-     $('.card').click(clickedCard($(this)));                //adds the click handler for the 'card' class
-     firstCardClicked = null;
-     secondCardClicked = null;
-     $('#gameWon').css('display', 'none');                  //reset win features
+     // $('.card').click(clickedCard($(this)));                //adds the click handler for the 'card' class  //click handlers applied when new game board generated
+     // firstCardClicked = null;
+     // secondCardClicked = null;
+     $('#gameWon').css('display', 'none');                  //reset win features        //will need to be placed outside of cardArea
+
+     $('.reset').off('click');
+     initializeGameBoard();
  }
 
  //purpose: calculates the user's statistics of the game, namely accuracy
