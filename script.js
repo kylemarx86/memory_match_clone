@@ -37,7 +37,7 @@
  //functions called: createInitialArray, createSingleCard
  //returns: none
  function initializeGameBoard(){
-     totalPossibleMatches = 9;        //temp while testing
+     totalPossibleMatches = 2;        //temp while testing
 
      matches = 0;
      attempts = 0;
@@ -232,10 +232,18 @@ function applyEventHandlers(){
  //returns: none
  function makeCardsMatch() {
      // console.log('cards match');        //leave for now
+     // console.log(firstCardClicked);
+     // console.log(secondCardClicked);
      firstCardClicked.addClass('matched');
      secondCardClicked.addClass('matched');
      firstCardClicked.removeClass('cardClicked');
      secondCardClicked.removeClass('cardClicked');
+
+     var transparency = $('<div>').addClass('card transparency');
+     $(firstCardClicked).append(transparency);
+     transparency = $('<div>').addClass('card transparency');
+     $(secondCardClicked).append(transparency);
+
      firstCardClicked = null;
      secondCardClicked = null;
      matches++;                                     //watch in debug
@@ -244,6 +252,7 @@ function applyEventHandlers(){
      gameIsWon();
  }
 
+
  //purpose: Makes cards clickable and card backs visible after it has been determined that the cards do not match, then it resets the first and second card. Readies the click handlier again.
  //param: none
  //local: none
@@ -251,15 +260,12 @@ function applyEventHandlers(){
  //functions called: clickedCard
  //returns: none
  function makeCardsReappear() {
-     // firstCardClicked.find('.back').css('display','initial');      //worked for img tags
-     // secondCardClicked.find('.back').css('display','initial');
      firstCardClicked.removeClass('cardClicked');
      secondCardClicked.removeClass('cardClicked');
      firstCardClicked = null;
      secondCardClicked = null;
      displayStats();
      clickedCard();                                //readies click handler again
-
  }
 
  //purpose: checks with the game is won

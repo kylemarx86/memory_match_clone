@@ -149,11 +149,11 @@ header img{
     -webkit-transform: rotateY(-180deg);
     /*display: none;*/
 }
-.card.matched{
-    z-index: 5;
-    background-color: #1dc116;
-    /*opacity: 0.5;*/
-}
+/*.card.matched{*/
+    /*!*z-index: 5;*!*/
+    /*!*background-color: #1dc116;*!*/
+    /*!*opacity: 0.5;*!*/
+/*}*/
 .card.matched .front{
     /*performs the transition when clicked*/
     transform: rotateY(0deg);
@@ -162,6 +162,12 @@ header img{
 }
 .card.matched .back{
     visibility: hidden;     /*need some sort of resetting when game restarted????*/
+}
+.card.matched .transparency{
+    background-color: #1dc116;
+    z-index: 5;
+    opacity: 0.5;
+    margin: 0;
 }
 
 #gameWon{
@@ -208,5 +214,3 @@ header img{
     float: right;
     display: block;
 }
-
-
