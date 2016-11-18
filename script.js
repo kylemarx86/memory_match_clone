@@ -218,8 +218,6 @@ function applyEventHandlers(){
  //returns: none
  function checkForMatches() {
      if(firstCardClicked.find('.front').css('background-image') === secondCardClicked.find('.front').css('background-image')){
-         //here's the set time out that Scott told me to look at
-
          setTimeout(makeCardsMatch, 500);      //time should be same as transition time for card flipping
      }else{
          setTimeout(makeCardsReappear, 2000);
