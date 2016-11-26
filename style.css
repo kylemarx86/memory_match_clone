@@ -53,35 +53,50 @@ header img{
 }
 /*styling for game area*/
 /*do a calc to recalculate the width*/
-#game-area{
+#gameArea{
     position: absolute;
     bottom: 0;
     right: 0;
+    width: calc(100% - 150px);
     height: 85%;
-    width: calc(100% - 200px);
     padding: 10px;
     background-color: #c56c39;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
 }
-.row{
+#cardArea{
     position: relative;
-    height: 20%;
-    width: 100%;
-    right: 0;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
     margin: 0;
     padding: 0;
-    display: inline-block;
 }
+#map {
+    position: relative;
+    display: inline-block;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    margin: 0;
+    padding: 0;
+}
+
 /*styling for cards*/
 /*picture ratio for card is 108 to 140 (w:h)*/
 .card {
     position: relative;
-    height: 20%;
+    width: 100px;
+    height: 150px;
+
+    /*width: 50px;*/
+    /*height: 75px;*/
     /*want width to be set based on the ratios of image*/
-    width: 120px;
+
     display:inline-block;
     margin: 5px;
     /*border: 1px solid black;*/
@@ -134,18 +149,31 @@ header img{
     -webkit-transform: rotateY(-180deg);
     /*display: none;*/
 }
+/*.card.matched{*/
+    /*!*z-index: 5;*!*/
+    /*!*background-color: #1dc116;*!*/
+    /*!*opacity: 0.5;*!*/
+/*}*/
 .card.matched .front{
     /*performs the transition when clicked*/
     transform: rotateY(0deg);
     -webkit-transform: rotateY(0deg);
-    transition-duration: 0s;     /*not sure if this is necessary*/
+    /*transition-duration: 0s;     !*not sure if this is necessary*!*/
 }
 .card.matched .back{
     visibility: hidden;     /*need some sort of resetting when game restarted????*/
 }
+.card.matched .transparency{
+    background-color: #1dc116;
+    z-index: 5;
+    opacity: 0.5;
+    margin: 0;
+}
 
 #gameWon{
     display: none;
+    /*height: 20%;*/
+    width: 100%;
     color: white;
     text-align: center;
 }
@@ -161,7 +189,7 @@ header img{
     bottom: 0;
     left: 0;
     height: 85%;
-    width: 200px;
+    width: 150px;
     background-color: #496647;
 }
 .side_nav ul{
@@ -186,4 +214,3 @@ header img{
     float: right;
     display: block;
 }
-
