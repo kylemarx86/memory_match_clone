@@ -29,7 +29,7 @@
 <!-- stats container -->
 <!-- container to hold statistics and options for resetting these -->
 <!-- features to have: games played, attempts (times clicked on cards), accuracy (ratio of correct clicks to total clicks for current game), reset button -->
-<div id="stats">
+<div class="sideNav" id="stats">
     <div class="gamesPlayed">
         <div class="label">Games Played</div>
         <div class="value"></div>
@@ -47,36 +47,28 @@
 <!-- game area container -->
 <!-- the area where the game takes place -->
 <!-- features to include: 18 cards fronts and 18 card backs -->
-<div id="gameArea">
-    <!-- create a card composed of front(on bottom) and back(layered on top)-->
-    <!--<div class="row row1"></div>-->
-    <!--<div class="row row2"></div>-->
-    <!--<div class="row row3"></div>-->
+<div class="mainContent" id="gameArea">
     <div id="cardArea"></div>
     <div id="map"></div>
     <!-- Replace the value of the key parameter with your own API key. -->
 
-    <div id="gameWon">
+    <div >
 
     </div>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="gameWonModal" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-body">
-                <!--<h3>You won! What are you a park ranger, now?</h3>-->
+                <h3>You won! What are you a park ranger, now?</h3>
                 <img src="resources/Junior_Ranger_logo.gif">
             </div>
         </div>
     </div>
 </div>
-
-
-
-
 
 </body>
 </html>

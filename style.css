@@ -25,15 +25,6 @@ header img{
     width: auto;
 }
 /* styling for the side stats bar*/
-/*do a calc to recalculate the width*/
-#stats {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 85%;
-    width: 200px;
-    background-color: #99542c;
-}
 .label{
     height: 30px;
     width: 100%;
@@ -52,16 +43,6 @@ header img{
     margin: 10px auto;
 }
 /*styling for game area*/
-/*do a calc to recalculate the width*/
-#gameArea{
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: calc(100% - 150px);
-    height: 85%;
-    padding: 10px;
-    background-color: #c56c39;
-}
 #cardArea{
     position: relative;
     display: inline-flex;
@@ -106,7 +87,6 @@ header img{
 .front, .back {
     position: absolute;
     /*!*backface-visibility: hidden;*!  can't have because the background image on the front would be hidden*/
-
     height: 100%;
     width: 100%;
     display: inline-block;
@@ -147,18 +127,11 @@ header img{
 .card.cardClicked .back {
     transform: rotateY(-180deg);
     -webkit-transform: rotateY(-180deg);
-    /*display: none;*/
 }
-/*.card.matched{*/
-    /*!*z-index: 5;*!*/
-    /*!*background-color: #1dc116;*!*/
-    /*!*opacity: 0.5;*!*/
-/*}*/
 .card.matched .front{
     /*performs the transition when clicked*/
     transform: rotateY(0deg);
     -webkit-transform: rotateY(0deg);
-    /*transition-duration: 0s;     !*not sure if this is necessary*!*/
 }
 .card.matched .back{
     visibility: hidden;     /*need some sort of resetting when game restarted????*/
@@ -170,45 +143,51 @@ header img{
     margin: 0;
 }
 
-#gameWon{
+#gameWonModal{
     display: none;
     /*height: 20%;*/
     width: 100%;
     color: white;
     text-align: center;
 }
-#gameWon img{
+#gameWonModal img{
     height: 200px;
     width: auto;
     display: block;
     margin: 0 auto;
 }
 /*styling for about page*/
-.side_nav {
+.sideNav {
     position: absolute;
     bottom: 0;
     left: 0;
     height: 85%;
     width: 150px;
-    background-color: #496647;
+    /*background-color: #496647;*/
+    background-color: #99542c;
 }
-.side_nav ul{
+.sideNav ul{
     color: white;
 }
-.side_nav a{
+.sideNav a{
     color: white;
 }
-.main-content{
+.mainContent{
     position: absolute;
     bottom: 0;
     right: 0;
-    height: calc(85% - 20px);
-    width: calc(100% - 220px);
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 85%;
+    width: calc(100% - 150px);
+    margin: 0;
     padding: 10px;
-    background-color: #99542c;
+    /*background-color: #99542c;*/
+    background-color: #c56c39;
     color: white;
 }
-.main-content img{
+.mainContent img{
     height: 150px;
     width: auto;
     float: right;
