@@ -351,16 +351,58 @@ function applyEventHandlers(){
      displayStats();
  }
 
+//purpose: initializes google map
+function initMap() {
+    var CenterOfUSA = {lat: 38, lng: -97.5};
+    //array of national parks and their positions in geocoded form
+    var parks = [
+            {name: 'acadia',  pos: {lat: 44.338556, lng: -68.273335}},
+            {name: 'arches', pos: {lat: 38.733081, lng: -109.592514}},
+            {name: 'everglades', pos: {lat: 25.286615, lng: -80.89865}},
+            {name: 'grandCanyon', pos: {lat: 36.106965, lng: -112.112997}},
+            {name: 'hotSprings', pos: {lat: 34.521692, lng: -93.042354}},
+            {name: 'olympic', pos: {lat: 47.802107, lng: -123.604352}},
+            {name: 'shenandoah', pos: {lat: 38.292756, lng: -78.679584 }},
+            {name: 'yellowstone', pos: {lat: 44.427968, lng: -110.588454}},
+            {name: 'yosemite', pos: {lat: 37.865101, lng: -119.538329}},
+        ];
 
-// function initMap() {
-//     var CenterOfUSA = {lat: 38, lng: -97.5};
-//     //var CenterOfUSA = {lat: 39.828127, lng: -98.579404};
-//     var map = new google.maps.Map(document.getElementById('map'), {
-//         zoom: 4,
-//         center: CenterOfUSA
-//     });
-//     var marker = new google.maps.Marker({
-//         position: CenterOfUSA,
-//         map: map
-//     });
-// }
+    //var CenterOfUSA = {lat: 39.828127, lng: -98.579404};  //old
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 4,
+        center: CenterOfUSA
+    });
+    // var marker = new google.maps.Marker({
+    //     position: CenterOfUSA,
+    //     map: map
+    // });
+    var npsLogo = {
+        url: 'resources/nps_logo_transparent_tiny.png'
+    };
+    for(var i = 0; i < parks.length; i++){
+        var park = new google.maps.Marker({
+            position: parks[i]['pos'],
+            map: map,
+            icon: npsLogo
+        });
+    }
+
+
+    // var acadia_marker = new google.maps.Marker({
+    //     position: acadia,
+    //     map: map
+    // });
+    // var arches_marker = new google.maps.Marker({
+    //     position: arches,
+    //     map: map
+    // });
+    // var everglades_marker = new google.maps.Marker({
+    //     position: everglades,
+    //     map: map
+    // });
+    map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
+}
+
+function addMarkerToMap(){
+
+}

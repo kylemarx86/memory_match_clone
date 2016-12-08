@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- link to external stylesheet -->
+    <link rel="stylesheet" type="text/css" href="style.css"/>
     <!-- Bootstrap link -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"
           type="text/css"/>
     <!-- link to jquery library -->
     <link href="https://code.jquery.com/jquery-2.1.4.min.js"/>
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-    <!-- link to external stylesheet -->
-    <link rel="stylesheet" type="text/css" href="style.css"/>
     <script src="script.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArSDeBxkOijJ6rGZl5vAlAExI1daYVZVc&callback=initMap">
+    </script>
     <!--<script async defer-->
-            <!--src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkUOdZ5y7hMm0yrcCQoCvLwzdM6M8s5qk&callback=initMap">-->
+        <!--src="https://maps.googleapis.com/maps/api/staticmap?maptype=satellite&center=37.530101,38.600062&zoom=14&size=640x400&key=AIzaSyCEYO6Gvz9XBVT78sl421fMFgV3mEE-DQw">-->
     <!--</script>-->
+
 </head>
 <body>
 <!-- header container -->
@@ -46,7 +50,7 @@
 </div>
 <!-- game area container -->
 <!-- the area where the game takes place -->
-<!-- features to include: 18 cards fronts and 18 card backs -->
+<!-- features to include: 18 cards with fronts and backs -->
 <div class="mainContent" id="gameArea">
     <div id="cardArea"></div>
     <div id="map"></div>
