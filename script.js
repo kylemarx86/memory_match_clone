@@ -19,6 +19,24 @@
  var accuracy = 0;          //ratio of the number of matches to attempts
  var gamesPlayed = 0;      //the number of times the game has been played
 
+//variables relating to the map feature
+var markers = [];
+var npsLogo = null;
+var map = null;
+
+//array of national parks and their positions in geocoded form
+var parks = [
+    {name: 'acadia',  pos: {lat: 44.338556, lng: -68.273335}},
+    {name: 'arches', pos: {lat: 38.733081, lng: -109.592514}},
+    {name: 'everglades', pos: {lat: 25.286615, lng: -80.89865}},
+    {name: 'grandCanyon', pos: {lat: 36.106965, lng: -112.112997}},
+    {name: 'hotSprings', pos: {lat: 34.521692, lng: -93.042354}},
+    {name: 'olympic', pos: {lat: 47.802107, lng: -123.604352}},
+    {name: 'shenandoah', pos: {lat: 38.292756, lng: -78.679584 }},
+    {name: 'yellowstone', pos: {lat: 44.427968, lng: -110.588454}},
+    {name: 'yosemite', pos: {lat: 37.865101, lng: -119.538329}},
+];
+
  //purpose: set up the game board when the document is loaded
  //param: none
  //local: none
@@ -46,6 +64,11 @@
      firstCardClicked = null;
      secondCardClicked = null;
 
+     // markers = [];
+     // map = $('#map');
+     // map = new google.maps.Map($('#map-canvas')[0], options);
+     // map = new google.maps.Map($('#map')[0], options);
+     //****************prob change this******************
 //what i want: 3 rows. within each row 6 divs with class card
 // a div card, with div front and div back within. within div front an image. within div back an image
      var initArray = createInitialArray();      //create an array of numbers associated with the image on a card's front
@@ -228,7 +251,7 @@ function applyEventHandlers(){
  //param: none
  //local: none
  //global: firstCardClicked, secondCardClicked, matches
- //functions called: gameIsWon, clickedCard
+ //functions called: gameIsWon, clickedCard, addMarkerToMap
  //returns: none
  function makeCardsMatch() {
      // console.log('cards match');        //leave for now
@@ -238,6 +261,10 @@ function applyEventHandlers(){
      secondCardClicked.addClass('matched');
      firstCardClicked.removeClass('cardClicked');
      secondCardClicked.removeClass('cardClicked');
+
+     //add method to add marker to the map here
+     console.log(firstCardClicked.find('.front').css('background-image'));
+     addMarkerToMap(firstCardClicked.find('.front').css('background-image'));
 
      var transparency = $('<div>').addClass('card transparency');
      $(firstCardClicked).append(transparency);
@@ -351,59 +378,119 @@ function applyEventHandlers(){
      displayStats();
  }
 
+
+
 //purpose: initializes google map
 function initMap() {
     // var CenterOfUSA = {lat: 38, lng: -97.5};
     var CenterOfUSA = {lat: 38, lng: -100};
-    //array of national parks and their positions in geocoded form
-    var parks = [
-            {name: 'acadia',  pos: {lat: 44.338556, lng: -68.273335}},
-            {name: 'arches', pos: {lat: 38.733081, lng: -109.592514}},
-            {name: 'everglades', pos: {lat: 25.286615, lng: -80.89865}},
-            {name: 'grandCanyon', pos: {lat: 36.106965, lng: -112.112997}},
-            {name: 'hotSprings', pos: {lat: 34.521692, lng: -93.042354}},
-            {name: 'olympic', pos: {lat: 47.802107, lng: -123.604352}},
-            {name: 'shenandoah', pos: {lat: 38.292756, lng: -78.679584 }},
-            {name: 'yellowstone', pos: {lat: 44.427968, lng: -110.588454}},
-            {name: 'yosemite', pos: {lat: 37.865101, lng: -119.538329}},
-        ];
-
     //var CenterOfUSA = {lat: 39.828127, lng: -98.579404};  //old
-    var map = new google.maps.Map(document.getElementById('map'), {
+
+    map = new google.maps.Map(document.getElementById('map'), {
         zoom: 4,
         center: CenterOfUSA
     });
-    // var marker = new google.maps.Marker({
-    //     position: CenterOfUSA,
-    //     map: map
-    // });
-    var npsLogo = {
+
+    markers = [];
+    npsLogo = {
         url: 'resources/nps_logo_transparent_tiny.png'
     };
-    for(var i = 0; i < parks.length; i++){
-        var park = new google.maps.Marker({
-            position: parks[i]['pos'],
-            map: map,
-            icon: npsLogo
-        });
-    }
 
+    // for(var i = 0; i < parks.length; i++){
+    //     var park = new google.maps.Marker({
+    //         position: parks[i]['pos'],
+    //         map: map,
+    //         icon: npsLogo
+    //     });
+    // }
 
     // var acadia_marker = new google.maps.Marker({
-    //     position: acadia,
-    //     map: map
+    //     position: parks[0]['pos'],
+    //     map: map,
+    //     icon: npsLogo
     // });
+    // console.log(acadia_marker);
     // var arches_marker = new google.maps.Marker({
     //     position: arches,
-    //     map: map
-    // });
-    // var everglades_marker = new google.maps.Marker({
-    //     position: everglades,
     //     map: map
     // });
     map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
 }
 
-function addMarkerToMap(){
+//purpose: adds a marker to the map for the designated park
+//param: none
+//local: none
+//global: none
+//functions called: none
+//returns: none
+function addMarkerToMap(imageSrc){
+    var index = findArrayIndexFromImage(imageSrc);
+    var new_marker = new google.maps.Marker({
+        position: parks[index]['pos'],
+        map: map,
+        icon: npsLogo
+    });
+    console.log(map);
+    // console.log(parks[index]['pos']);
+    // console.log(npsLogo);
+    console.log(new_marker);
+    markers.push(new_marker);
+    // new_marker.setMap()
+}
 
+// // Sets the map on all markers in the array.
+// function setMapOnAll(map) {
+//     for (var i = 0; i < markers.length; i++) {
+//         markers[i].setMap(map);
+//     }
+// }
+
+//purpose:
+//param: none
+//local: none
+//global: none
+//functions called: none
+//returns: none
+function removeMarkersFromMap(){
+    markers = [];
+}
+
+
+//purpose: based on an image source, determines which index in the park array to grab
+//param: imageSrc
+//local: none
+//global: none
+//functions called: none
+//returns: index (the index in the parks array associated with the image)
+function findArrayIndexFromImage(imageSrc) {
+    var index = null;
+    switch(imageSrc){
+        case 'resources/National_Park_Quarters/Acadia.png':
+            index = 0;
+            break;
+        case 'resources/National_Park_Quarters/Arches.png':
+            index = 1;
+            break;
+        case 'resources/National_Park_Quarters/Everglades.png':
+            index = 2;
+            break;
+        case 'resources/National_Park_Quarters/Grand_Canyon.png':
+            index = 3;
+            break;
+        case 'resources/National_Park_Quarters/Hot_Springs.png':
+            index = 4;
+            break;
+        case 'resources/National_Park_Quarters/Olympic.png':
+            index = 5;
+            break;
+        case 'resources/National_Park_Quarters/Shenandoah.png':
+            index = 6;
+            break;
+        case 'resources/National_Park_Quarters/Yellowstone.png':
+            index = 7;
+            break;
+        default:
+            index = 8;
+    }
+    return index;
 }
