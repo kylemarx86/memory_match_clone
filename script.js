@@ -353,7 +353,8 @@ function applyEventHandlers(){
 
 //purpose: initializes google map
 function initMap() {
-    var CenterOfUSA = {lat: 38, lng: -97.5};
+    // var CenterOfUSA = {lat: 38, lng: -97.5};
+    var CenterOfUSA = {lat: 38, lng: -100};
     //array of national parks and their positions in geocoded form
     var parks = [
             {name: 'acadia',  pos: {lat: 44.338556, lng: -68.273335}},
