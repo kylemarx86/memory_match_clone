@@ -428,6 +428,7 @@ function addMarkerToMap(imageSrc){
     var new_marker = new google.maps.Marker({
         position: parks[index]['pos'],
         map: map,
+        animation: google.maps.Animation.DROP,
         icon: npsLogo
     });
     // console.log(map);
