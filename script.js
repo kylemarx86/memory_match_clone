@@ -9,15 +9,16 @@
 //returns: none
 
 
- var firstCardClicked = null;
- var secondCardClicked = null;
- var totalPossibleMatches = 9;
+var firstCardClicked = null;
+var secondCardClicked = null;
+var totalPossibleMatches = 9;
  // var totalPossibleMatches = 2;        //temp while testing
 
- var matches = 0;           //incrementer for the number of matches found
- var attempts = 0;          //incrementer for the number of attempted matches
- var accuracy = 0;          //ratio of the number of matches to attempts
- var gamesPlayed = 0;      //the number of times the game has been played
+var matches = 0;           //incrementer for the number of matches found
+var attempts = 0;          //incrementer for the number of attempted matches
+var accuracy = 0;          //ratio of the number of matches to attempts
+var distanceTraveled = 0;   //distance between the matched parks
+var gamesPlayed = 0;      //the number of times the game has been played
 
 //variables relating to the map feature
 var markers = [];
@@ -360,6 +361,9 @@ function applyEventHandlers(){
      // firstCardClicked = null;
      // secondCardClicked = null;
      $('#gameWon').css('display', 'none');                  //reset win features        //will need to be placed outside of cardArea
+     // removeMarkersFromMap();
+     //
+     initMap();
 
      $('.reset').off('click');
      initializeGameBoard();
@@ -445,6 +449,7 @@ function addMarkerToMap(imageSrc){
 //functions called: none
 //returns: none
 function removeMarkersFromMap(){
+    setMapOnAll(null);
     markers = [];
 }
 
