@@ -24,7 +24,9 @@ var gamesPlayed = 0;      //the number of times the game has been played
 var markers = [];
 var npsLogo = null;
 var map = null;
+var firstPark = null;
 var currentPark = null;
+
 
 //array of national parks and their positions in geocoded form
 var parks = [
@@ -57,7 +59,7 @@ var parks = [
  //functions called: createInitialArray, createSingleCard
  //returns: none
  function initializeGameBoard(){
-     totalPossibleMatches = 9;        //temp 2 while testing
+     totalPossibleMatches = 3;        //normal 9 but temp 3 while testing waypoints
 
      matches = 0;
      attempts = 0;
@@ -444,10 +446,6 @@ function addMarkerToMap(imageSrc){
         animation: google.maps.Animation.DROP,
         icon: npsLogo
     });
-    // console.log(map);
-    // console.log(parks[index]['pos']);
-    // console.log(npsLogo);
-    console.log(imageSrc);
     markers.push(new_marker);
 }
 
