@@ -55,7 +55,7 @@ var parks = [
  //functions called: createInitialArray, createSingleCard
  //returns: none
  function initializeGameBoard(){
-     totalPossibleMatches = 2;        //temp while testing
+     totalPossibleMatches = 9;        //temp 2 while testing
 
      matches = 0;
      attempts = 0;
@@ -263,7 +263,7 @@ function applyEventHandlers(){
      secondCardClicked.removeClass('cardClicked');
 
      //add method to add marker to the map here
-     console.log(firstCardClicked.find('.front').css('background-image'));
+     // console.log(firstCardClicked.find('.front').css('background-image'));
      addMarkerToMap(firstCardClicked.find('.front').css('background-image'));
 
      var transparency = $('<div>').addClass('card transparency');
@@ -430,20 +430,12 @@ function addMarkerToMap(imageSrc){
         map: map,
         icon: npsLogo
     });
-    console.log(map);
+    // console.log(map);
     // console.log(parks[index]['pos']);
     // console.log(npsLogo);
-    console.log(new_marker);
+    console.log(imageSrc);
     markers.push(new_marker);
-    // new_marker.setMap()
 }
-
-// // Sets the map on all markers in the array.
-// function setMapOnAll(map) {
-//     for (var i = 0; i < markers.length; i++) {
-//         markers[i].setMap(map);
-//     }
-// }
 
 //purpose:
 //param: none
@@ -464,29 +456,31 @@ function removeMarkersFromMap(){
 //returns: index (the index in the parks array associated with the image)
 function findArrayIndexFromImage(imageSrc) {
     var index = null;
-    switch(imageSrc){
-        case 'resources/National_Park_Quarters/Acadia.png':
+    switch(true){
+        case /(.+)Acadia(.+)/.test(imageSrc):
+        // case 'resources/National_Park_Quarters/Acadia.png':
             index = 0;
             break;
-        case 'resources/National_Park_Quarters/Arches.png':
+        case /(.+)Arches(.+)/.test(imageSrc):
+        // case 'resources/National_Park_Quarters/Arches.png':
             index = 1;
             break;
-        case 'resources/National_Park_Quarters/Everglades.png':
+        case /(.+)Everglades(.+)/.test(imageSrc):
             index = 2;
             break;
-        case 'resources/National_Park_Quarters/Grand_Canyon.png':
+        case /(.+)Grand_Canyon(.+)/.test(imageSrc):
             index = 3;
             break;
-        case 'resources/National_Park_Quarters/Hot_Springs.png':
+        case /(.+)Hot_Springs(.+)/.test(imageSrc):
             index = 4;
             break;
-        case 'resources/National_Park_Quarters/Olympic.png':
+        case /(.+)Olympic(.+)/.test(imageSrc):
             index = 5;
             break;
-        case 'resources/National_Park_Quarters/Shenandoah.png':
+        case /(.+)Shenandoah(.+)/.test(imageSrc):
             index = 6;
             break;
-        case 'resources/National_Park_Quarters/Yellowstone.png':
+        case /(.+)Yellowstone(.+)/.test(imageSrc):
             index = 7;
             break;
         default:
