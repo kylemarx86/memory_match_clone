@@ -24,6 +24,7 @@ var gamesPlayed = 0;      //the number of times the game has been played
 var markers = [];
 var npsLogo = null;
 var map = null;
+var currentPark = null;
 
 //array of national parks and their positions in geocoded form
 var parks = [
@@ -61,10 +62,12 @@ var parks = [
      matches = 0;
      attempts = 0;
      accuracy = 0;
+     distanceTraveled = 0;
 
      firstCardClicked = null;
      secondCardClicked = null;
 
+     currentPark = null;
      // markers = [];
      // map = $('#map');
      // map = new google.maps.Map($('#map-canvas')[0], options);
@@ -325,6 +328,7 @@ function applyEventHandlers(){
      $('.gamesPlayed .value').text(gamesPlayed);
      $('.attempts .value').text(attempts);
      $('.accuracy .value').text(accuracy);
+     $('.distance .value').text(distanceTraveled);
  }
 
  //purpose: calculates the user's accuracy. If the attempts are zero, it sets the accuracy to zero to prevent dividing by zero
@@ -378,6 +382,7 @@ function applyEventHandlers(){
  function resetStats() {
      matches = 0;
      attempts = 0;
+     distanceTraveled = 0;
      calculateAccuracy();
      displayStats();
  }
@@ -493,4 +498,9 @@ function findArrayIndexFromImage(imageSrc) {
             index = 8;
     }
     return index;
+}
+
+//distances between parks gathered from Google Maps
+function getDistanceBetweenParks(park1, park2) {
+
 }
