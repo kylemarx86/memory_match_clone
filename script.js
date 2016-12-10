@@ -1,3 +1,5 @@
+//idea separate arrays for markers and parksVisited. markers is physical markers collection for map and parksVisited is a list of indexes of the parks in order
+
 
 //template
 
@@ -22,17 +24,20 @@ var gamesPlayed = 0;      //the number of times the game has been played
 
 //variables relating to the map feature
 var markers = [];
+var parksVisited = [];
 var npsLogo = null;
 var map = null;
 var firstPark = null;
 var currentPark = null;
 
+var directionsService;
+var directionsDisplay;
 
 //array of national parks and their positions in geocoded form
 var parks = [
-    {name: 'acadia',  pos: {lat: 44.338556, lng: -68.273335}},
-    {name: 'arches', pos: {lat: 38.733081, lng: -109.592514}},
-    {name: 'everglades', pos: {lat: 25.286615, lng: -80.89865}},
+    {name: 'acadia',  pos: {lat: 44.338556, lng: -68.273335}, placeId: 'ChIJJSmiDrKjrkwRhFVV_A4i32I'},
+    {name: 'arches', pos: {lat: 38.733081, lng: -109.592514}, placeId: 'ChIJUaoNhhr2yoARlcQo0WnqQk8'},
+    {name: 'everglades', pos: {lat: 25.286615, lng: -80.89865}, placeId: 'ChIJldex4mqr0IgRPtkgx65AyR8'},
     {name: 'grandCanyon', pos: {lat: 36.106965, lng: -112.112997}},
     {name: 'hotSprings', pos: {lat: 34.521692, lng: -93.042354}},
     {name: 'olympic', pos: {lat: 47.802107, lng: -123.604352}},
@@ -45,10 +50,10 @@ var parks = [
  //param: none
  //local: none
  //global: none
- //functions called: initializeGameBoard
+ //functions called: initializeGame
  //returns: none
  $(document).ready(function () {
-     initializeGameBoard();
+     initializeGame();
  });
 
 
@@ -58,7 +63,7 @@ var parks = [
  //global: none
  //functions called: createInitialArray, createSingleCard
  //returns: none
- function initializeGameBoard(){
+ function initializeGame(){
      totalPossibleMatches = 3;        //normal 9 but temp 3 while testing waypoints
 
      matches = 0;
@@ -69,8 +74,9 @@ var parks = [
      firstCardClicked = null;
      secondCardClicked = null;
 
-     currentPark = null;
-     // markers = [];
+     // currentPark = null;
+     markers = [];
+     parksVisited = [];
      // map = $('#map');
      // map = new google.maps.Map($('#map-canvas')[0], options);
      // map = new google.maps.Map($('#map')[0], options);
@@ -262,20 +268,39 @@ function applyEventHandlers(){
  function makeCardsMatch() {
      // console.log('cards match');        //leave for now
      // console.log(firstCardClicked);
-     // console.log(secondCardClicked);
      firstCardClicked.addClass('matched');
      secondCardClicked.addClass('matched');
      firstCardClicked.removeClass('cardClicked');
      secondCardClicked.removeClass('cardClicked');
 
-     //add method to add marker to the map here
-     // console.log(firstCardClicked.find('.front').css('background-image'));
-     addMarkerToMap(firstCardClicked.find('.front').css('background-image'));
-
      var transparency = $('<div>').addClass('card transparency');
      $(firstCardClicked).append(transparency);
      transparency = $('<div>').addClass('card transparency');
      $(secondCardClicked).append(transparency);
+
+     // //trying this out here
+     // directionsService = new google.maps.DirectionsService;
+     // directionsDisplay = new google.maps.DirectionsRenderer;
+
+     var parkIndex = findArrayIndexFromImage(firstCardClicked.find('.front').css('background-image'));
+     // if(matches === 0){
+     //     firstPark = parkIndex;
+     //     currentPark = parkIndex;
+     //     //no route available if current park is the first park
+     // }else{
+     //     currentPark = parkIndex;
+     // }
+
+     //prob combine all these compenents into an update map function
+     parksVisited.push(parkIndex);
+
+     //add method to add marker to the map here
+     //also pushes a marker to the markers array
+     addMarkerToMap(parkIndex);
+
+     if(parksVisited.length > 1) {
+         calculateAndDisplayRoute(directionsService, directionsDisplay);
+     }
 
      firstCardClicked = null;
      secondCardClicked = null;
@@ -372,7 +397,7 @@ function applyEventHandlers(){
      initMap();
 
      $('.reset').off('click');
-     initializeGameBoard();
+     initializeGame();
  }
 
  //purpose: calculates the user's statistics of the game, namely accuracy
@@ -397,8 +422,8 @@ function initMap() {
     var CenterOfUSA = {lat: 38, lng: -100};
     //var CenterOfUSA = {lat: 39.828127, lng: -98.579404};  //old
 
-    var directionsService = new google.maps.DirectionsService;
-    var directionsDisplay = new google.maps.DirectionsRenderer;
+    directionsService = new google.maps.DirectionsService;
+    directionsDisplay = new google.maps.DirectionsRenderer;
 
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 4,
@@ -407,6 +432,7 @@ function initMap() {
     });
 
     markers = [];
+    parksVisited = [];
     npsLogo = {
         url: 'resources/nps_logo_transparent_tiny.png'
     };
@@ -424,11 +450,6 @@ function initMap() {
     //     map: map,
     //     icon: npsLogo
     // });
-    // console.log(acadia_marker);
-    // var arches_marker = new google.maps.Marker({
-    //     position: arches,
-    //     map: map
-    // });
     map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
 }
 
@@ -438,10 +459,10 @@ function initMap() {
 //global: none
 //functions called: none
 //returns: none
-function addMarkerToMap(imageSrc){
-    var index = findArrayIndexFromImage(imageSrc);
+function addMarkerToMap(parkIndex){
+
     var new_marker = new google.maps.Marker({
-        position: parks[index]['pos'],
+        position: parks[parkIndex]['pos'],
         map: map,
         animation: google.maps.Animation.DROP,
         icon: npsLogo
@@ -458,6 +479,7 @@ function addMarkerToMap(imageSrc){
 function removeMarkersFromMap(){
     setMapOnAll(null);
     markers = [];
+    // parksVisited = []; //not necessary here
 }
 
 
@@ -510,23 +532,40 @@ function getDistanceBetweenParks(park1, park2) {
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     var waypts = [];
-    // var checkboxArray = document.getElementById('waypoints');
-    for (var i = 0; i < checkboxArray.length; i++) {
-        if (checkboxArray.options[i].selected) {
+    if(parksVisited.length > 2){
+        for(var i = 1; i < parksVisited.length - 1; i++){
+            console.log('parksVisited: ', parksVisited);
             waypts.push({
-                location: checkboxArray[i].value,
+                location: parks[parksVisited[i]]['pos'],
                 stopover: true
             });
         }
     }
+    // var checkboxArray = document.getElementById('waypoints');
+    // for (var i = 0; i < parksVisited.length; i++) {
+    //     waypts.push({
+    //         location: parks[index]['pos'],
+    //         stopover: true
+    //     });
+        // if (checkboxArray.options[i].selected) {
+        //     waypts.push({
+        //         location: checkboxArray[i].value,
+        //         stopover: true
+        //     });
+        // }
+    // }
 
     directionsService.route({
-        origin: document.getElementById('start').value,
-        destination: document.getElementById('end').value,
+        //find out how this origin and destination is stored (is it an id or a location object)
+        // origin: document.getElementById('start').value,
+        origin: parks[parksVisited[0]]['placeId'],
+        // destination: document.getElementById('end').value,
+        destination: parks[parksVisited[parksVisited.length - 1]]['placeId'],
         waypoints: waypts,
-        optimizeWaypoints: true,
+        optimizeWaypoints: false,
         travelMode: 'DRIVING'
     }, function(response, status) {
+        console.log(response);
         if (status === 'OK') {
             directionsDisplay.setDirections(response);
             var route = response.routes[0];
