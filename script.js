@@ -12,7 +12,6 @@
 var firstCardClicked = null;
 var secondCardClicked = null;
 var totalPossibleMatches = 9;
- // var totalPossibleMatches = 2;        //temp while testing
 
 var matches = 0;           //incrementer for the number of matches found
 var attempts = 0;          //incrementer for the number of attempted matches
@@ -22,10 +21,10 @@ var gamesPlayed = 0;      //the number of times the game has been played
 
 //variables relating to the map feature
 var markers = [];
+var parksVisited = [];
 var npsLogo = null;
 var map = null;
-var firstPark = null;
-var currentPark = null;
+// var currentPark = null;
 
 
 //array of national parks and their positions in geocoded form
@@ -59,7 +58,7 @@ var parks = [
  //functions called: createInitialArray, createSingleCard
  //returns: none
  function initializeGameBoard(){
-     totalPossibleMatches = 3;        //normal 9 but temp 3 while testing waypoints
+     totalPossibleMatches = 2;        //normal 9 but temp 2 while testing modal
 
      matches = 0;
      attempts = 0;
@@ -69,7 +68,9 @@ var parks = [
      firstCardClicked = null;
      secondCardClicked = null;
 
+     parksVisited = [];
      currentPark = null;
+
      // markers = [];
      // map = $('#map');
      // map = new google.maps.Map($('#map-canvas')[0], options);
@@ -89,6 +90,7 @@ var parks = [
 
          $('#cardArea').append(singleCard);
      }
+     $('#gameWonModal').modal({show: false});
      applyEventHandlers();            //when the board is set up add the event handlers
  }
 
@@ -310,8 +312,14 @@ function applyEventHandlers(){
  function gameIsWon() {
      if(matches === totalPossibleMatches){
          // console.log('winner');
-         $("#gameWon").css('display','initial');
+         // $("#gameWon").css('display','initial');
          // $("#gameWon").css('display','inline-block');
+         // $("#gameWonModal").modal('show');
+         $("#gameWonModal").modal();
+         // $('#gameWonModal').modal({show: true});
+
+
+         //<button ng-show="ic.saveBetData.game_id>0" type="button" class=" confirm_button" data-toggle="modal" data-target="#myModal" ng-if="bet_data.final_score_a==-1">Make Bet</button>    <!-- makes modal appear    data target identifies which modal to target show hide,etc-->
      }
  }
 
@@ -389,46 +397,27 @@ function applyEventHandlers(){
      displayStats();
  }
 
-
-
 //purpose: initializes google map
+//param: none
+//local:
+//global:
+//functions called:
+//returns: none
 function initMap() {
     // var CenterOfUSA = {lat: 38, lng: -97.5};
     var CenterOfUSA = {lat: 38, lng: -100};
     //var CenterOfUSA = {lat: 39.828127, lng: -98.579404};  //old
-
-    var directionsService = new google.maps.DirectionsService;
-    var directionsDisplay = new google.maps.DirectionsRenderer;
 
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 4,
         center: CenterOfUSA,
         disableDefaultUI: true
     });
-
     markers = [];
     npsLogo = {
         url: 'resources/nps_logo_transparent_tiny.png'
     };
 
-    // for(var i = 0; i < parks.length; i++){
-    //     var park = new google.maps.Marker({
-    //         position: parks[i]['pos'],
-    //         map: map,
-    //         icon: npsLogo
-    //     });
-    // }
-
-    // var acadia_marker = new google.maps.Marker({
-    //     position: parks[0]['pos'],
-    //     map: map,
-    //     icon: npsLogo
-    // });
-    // console.log(acadia_marker);
-    // var arches_marker = new google.maps.Marker({
-    //     position: arches,
-    //     map: map
-    // });
     map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
 }
 
@@ -505,44 +494,4 @@ function findArrayIndexFromImage(imageSrc) {
 //distances between parks gathered from Google Maps
 function getDistanceBetweenParks(park1, park2) {
 
-}
-
-
-function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-    var waypts = [];
-    // var checkboxArray = document.getElementById('waypoints');
-    for (var i = 0; i < checkboxArray.length; i++) {
-        if (checkboxArray.options[i].selected) {
-            waypts.push({
-                location: checkboxArray[i].value,
-                stopover: true
-            });
-        }
-    }
-
-    directionsService.route({
-        origin: document.getElementById('start').value,
-        destination: document.getElementById('end').value,
-        waypoints: waypts,
-        optimizeWaypoints: true,
-        travelMode: 'DRIVING'
-    }, function(response, status) {
-        if (status === 'OK') {
-            directionsDisplay.setDirections(response);
-            var route = response.routes[0];
-            var summaryPanel = document.getElementById('directions-panel');
-            summaryPanel.innerHTML = '';
-            // For each route, display summary information.
-            for (var i = 0; i < route.legs.length; i++) {
-                var routeSegment = i + 1;
-                // summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
-                //     '</b><br>';
-                // summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
-                // summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
-                summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
-            }
-        } else {
-            window.alert('Directions request failed due to ' + status);
-        }
-    });
 }
