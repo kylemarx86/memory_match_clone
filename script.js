@@ -90,6 +90,7 @@ var parks = [
 
          $('#cardArea').append(singleCard);
      }
+
      $('#gameWonModal').modal({show: false});
      applyEventHandlers();            //when the board is set up add the event handlers
  }
@@ -303,7 +304,7 @@ function applyEventHandlers(){
      clickedCard();                                //readies click handler again
  }
 
- //purpose: checks with the game is won
+ //purpose: checks with the game is won and display a win statement if game is in fact won
  //param: none
  //local: none
  //global: matches, totalPossibleMatches
@@ -312,14 +313,7 @@ function applyEventHandlers(){
  function gameIsWon() {
      if(matches === totalPossibleMatches){
          // console.log('winner');
-         // $("#gameWon").css('display','initial');
-         // $("#gameWon").css('display','inline-block');
-         // $("#gameWonModal").modal('show');
          $("#gameWonModal").modal();
-         // $('#gameWonModal').modal({show: true});
-
-
-         //<button ng-show="ic.saveBetData.game_id>0" type="button" class=" confirm_button" data-toggle="modal" data-target="#myModal" ng-if="bet_data.final_score_a==-1">Make Bet</button>    <!-- makes modal appear    data target identifies which modal to target show hide,etc-->
      }
  }
 
@@ -368,15 +362,18 @@ function applyEventHandlers(){
 
      $('#cardArea').empty();
 
+     //i need to clean this area up. I don't believe any of the commented out code is necessary because it is handled in the initialize
+
      // $('.back').css('display', 'initial');                  //makes all card back reappear
      // $('.card').removeClass('cardClicked matched');         //makes all cards clickable once more by removing 'cardClicked' and 'matched' classes
      $('.card').off('click');                               //temporarily removes all click handlers, so that they won't fire twice when restarted
      // $('.card').click(clickedCard($(this)));                //adds the click handler for the 'card' class  //click handlers applied when new game board generated
      // firstCardClicked = null;
      // secondCardClicked = null;
-     $('#gameWon').css('display', 'none');                  //reset win features        //will need to be placed outside of cardArea
+     // $('#gameWon').css('display', 'none');                  //reset win features        //will need to be placed outside of cardArea
      // removeMarkersFromMap();
-     //
+
+     //for some reason i can not place this in the initialize game area
      initMap();
 
      $('.reset').off('click');
