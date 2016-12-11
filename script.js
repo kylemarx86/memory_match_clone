@@ -35,9 +35,9 @@ var directionsDisplay;
 
 //array of national parks and their positions in geocoded form
 var parks = [
-    {name: 'acadia',  pos: {lat: 44.338556, lng: -68.273335}, placeId: 'ChIJJSmiDrKjrkwRhFVV_A4i32I'},
-    {name: 'arches', pos: {lat: 38.733081, lng: -109.592514}, placeId: 'ChIJUaoNhhr2yoARlcQo0WnqQk8'},
-    {name: 'everglades', pos: {lat: 25.286615, lng: -80.89865}, placeId: 'ChIJldex4mqr0IgRPtkgx65AyR8'},
+    {officialName: 'acadia national park', name: 'acadia', pos: {lat: 44.338556, lng: -68.273335}, placeId: 'ChIJJSmiDrKjrkwRhFVV_A4i32I'},
+    {officialName: 'arches national park', name: 'arches', pos: {lat: 38.733081, lng: -109.592514}, placeId: 'ChIJUaoNhhr2yoARlcQo0WnqQk8'},
+    {officialName: 'everglades national park', name: 'everglades', pos: {lat: 25.286615, lng: -80.89865}, placeId: 'ChIJldex4mqr0IgRPtkgx65AyR8'},
     {name: 'grandCanyon', pos: {lat: 36.106965, lng: -112.112997}},
     {name: 'hotSprings', pos: {lat: 34.521692, lng: -93.042354}},
     {name: 'olympic', pos: {lat: 47.802107, lng: -123.604352}},
@@ -534,9 +534,11 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     var waypts = [];
     if(parksVisited.length > 2){
         for(var i = 1; i < parksVisited.length - 1; i++){
-            console.log('parksVisited: ', parksVisited);
+            // console.log('parksVisited: ', parksVisited);
+            console.log('pos: ', parks[parksVisited[i]]['pos']);
             waypts.push({
-                location: parks[parksVisited[i]]['pos'],
+                // location: parks[parksVisited[i]]['pos'],
+                location: parks[parksVisited[i]]['officalName'],        //alternate
                 stopover: true
             });
         }
@@ -557,15 +559,33 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 
     directionsService.route({
         //find out how this origin and destination is stored (is it an id or a location object)
-        // origin: document.getElementById('start').value,
         origin: parks[parksVisited[0]]['placeId'],
-        // destination: document.getElementById('end').value,
         destination: parks[parksVisited[parksVisited.length - 1]]['placeId'],
-        waypoints: waypts,
-        optimizeWaypoints: false,
-        travelMode: 'DRIVING'
+        // waypoints: waypts,
+        travelMode: 'DRIVING',
+        // optimizeWaypoints: false,
+
+
+        // origin: LatLng | String | google.maps.Place,         //NOT SURE IF THIS IS RIGHT
+        // destination: LatLng | String | google.maps.Place,    //NOT SURE IF THIS IS RIGHT
+        // travelMode: 'DRIVING',
+        // transitOptions: {},      //NOT NECESSARY WHEN TRAVEL_MODE IS 'DRIVING'
+        // drivingOptions: DrivingOptions,  //PREMIUM ONLY??
+        // unitSystem: UnitSystem,     //PROB WON'T BE NECESSARY
+        // waypoints[]: DirectionsWaypoint,
+        // optimizeWaypoints: Boolean,
+        // provideRouteAlternatives: Boolean,
+        // avoidHighways: Boolean,
+        // avoidTolls: Boolean,
+        // region: String
     }, function(response, status) {
+        console.log('direction service.route');
+        // console.log('origin: ', parks[parksVisited[0]]['placeId']);
+        // console.log('destination: ', parks[parksVisited[parksVisited.length - 1]]['placeId']);
+        console.log('origin: ', parks[parksVisited[0]]['officalName']);                                 //alternate
+        console.log('destination: ', parks[parksVisited[parksVisited.length - 1]]['officialName']);     //alternate
         console.log(response);
+        console.log(status);
         if (status === 'OK') {
             directionsDisplay.setDirections(response);
             var route = response.routes[0];
