@@ -27,8 +27,21 @@ var markers = [];
 var parksVisited = [];
 var npsLogo = null;
 var map = null;
-var firstPark = null;
+// var firstPark = null;
+var prevPark = null;
 var currentPark = null;
+// array showing distances between parks
+// each nested array represents the distance a park and all parks that come before it alphabetically, the first being Arches
+var distancesArray = [
+    [2510],
+    [1900, 2404],
+    [2896, 308, 2340],
+    [1809, 1218, 1189, 1241],
+    [3336, 1146, 3382, 1264, 2346],
+    [796, 1970, 1049, 2130, 923, 2820],
+    [2375, 548, 2554, 685, 1411, 830, 2006],
+    [3105, 713, 2954, 582, 1760, 879, 2650, 828]
+];
 
 var directionsService;
 var directionsDisplay;
@@ -64,7 +77,7 @@ var parks = [
  //functions called: createInitialArray, createSingleCard
  //returns: none
  function initializeGame(){
-     totalPossibleMatches = 3;        //normal 9 but temp 3 while testing waypoints
+     totalPossibleMatches = 9;        //normal 9 but temp 3 while testing waypoints
 
      matches = 0;
      attempts = 0;
@@ -299,7 +312,14 @@ function applyEventHandlers(){
      addMarkerToMap(parkIndex);
 
      if(parksVisited.length > 1) {
-         calculateAndDisplayRoute(directionsService, directionsDisplay);
+         //removed to remove an error
+         // calculateAndDisplayRoute(directionsService, directionsDisplay);
+
+         prevPark = currentPark;
+         currentPark = parkIndex;
+         distanceTraveled += getDistanceBetweenParks(prevPark, currentPark);
+     }else{
+         currentPark = parkIndex;
      }
 
      firstCardClicked = null;
@@ -355,7 +375,7 @@ function applyEventHandlers(){
      $('.gamesPlayed .value').text(gamesPlayed);
      $('.attempts .value').text(attempts);
      $('.accuracy .value').text(accuracy);
-     $('.distance .value').text(distanceTraveled);
+     $('.distance .value').text(distanceTraveled + " miles");
  }
 
  //purpose: calculates the user's accuracy. If the attempts are zero, it sets the accuracy to zero to prevent dividing by zero
@@ -524,10 +544,21 @@ function findArrayIndexFromImage(imageSrc) {
     return index;
 }
 
-//distances between parks gathered from Google Maps
-function getDistanceBetweenParks(park1, park2) {
+//distances between parks gathered based on information from Google maps
+//
+function getDistanceBetweenParks(parkIndex1, parkIndex2) {
+    //no need to check if the two park indices are equal because parks should never be the same
+    //we want the first park's index to be larger because it corresponds with the rows in the distances array. The distancesArray runs through parks with index 1 to index 7.
+    //the second park corresponds with the element nested within the row of the distancesArray
+    if(parkIndex1 < parkIndex2){
+        var temp = parkIndex1;
+        parkIndex1 = parkIndex2;
+        parkIndex2 = temp;
+    }
 
+    return distancesArray[parkIndex1 - 1][parkIndex2];
 }
+
 
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
