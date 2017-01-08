@@ -27,7 +27,6 @@ var markers = [];
 var parksVisited = [];
 var npsLogo = null;
 var map = null;
-// var firstPark = null;
 var prevPark = null;
 var currentPark = null;
 // array showing distances between parks
@@ -42,9 +41,6 @@ var distancesArray = [
     [2375, 548, 2554, 685, 1411, 830, 2006],
     [3105, 713, 2954, 582, 1760, 879, 2650, 828]
 ];
-
-var directionsService;
-var directionsDisplay;
 
 //array of national parks and their positions in geocoded form
 var parks = [
@@ -291,18 +287,7 @@ function applyEventHandlers(){
      transparency = $('<div>').addClass('card transparency');
      $(secondCardClicked).append(transparency);
 
-     // //trying this out here
-     // directionsService = new google.maps.DirectionsService;
-     // directionsDisplay = new google.maps.DirectionsRenderer;
-
      var parkIndex = findArrayIndexFromImage(firstCardClicked.find('.front').css('background-image'));
-     // if(matches === 0){
-     //     firstPark = parkIndex;
-     //     currentPark = parkIndex;
-     //     //no route available if current park is the first park
-     // }else{
-     //     currentPark = parkIndex;
-     // }
 
      //prob combine all these compenents into an update map function
      parksVisited.push(parkIndex);
@@ -312,9 +297,6 @@ function applyEventHandlers(){
      addMarkerToMap(parkIndex);
 
      if(parksVisited.length > 1) {
-         //removed to remove an error
-         // calculateAndDisplayRoute(directionsService, directionsDisplay);
-
          prevPark = currentPark;
          currentPark = parkIndex;
          distanceTraveled += getDistanceBetweenParks(prevPark, currentPark);
@@ -409,11 +391,7 @@ function applyEventHandlers(){
      // $('.card').removeClass('cardClicked matched');         //makes all cards clickable once more by removing 'cardClicked' and 'matched' classes
      $('.card').off('click');                               //temporarily removes all click handlers, so that they won't fire twice when restarted
      // $('.card').click(clickedCard($(this)));                //adds the click handler for the 'card' class  //click handlers applied when new game board generated
-     // firstCardClicked = null;
-     // secondCardClicked = null;
      $('#gameWon').css('display', 'none');                  //reset win features        //will need to be placed outside of cardArea
-     // removeMarkersFromMap();
-     //
      initMap();
 
      $('.reset').off('click');
@@ -442,9 +420,6 @@ function initMap() {
     var CenterOfUSA = {lat: 38, lng: -100};
     //var CenterOfUSA = {lat: 39.828127, lng: -98.579404};  //old
 
-    directionsService = new google.maps.DirectionsService;
-    directionsDisplay = new google.maps.DirectionsRenderer;
-
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 4,
         center: CenterOfUSA,
@@ -457,19 +432,6 @@ function initMap() {
         url: 'resources/nps_logo_transparent_tiny.png'
     };
 
-    // for(var i = 0; i < parks.length; i++){
-    //     var park = new google.maps.Marker({
-    //         position: parks[i]['pos'],
-    //         map: map,
-    //         icon: npsLogo
-    //     });
-    // }
-
-    // var acadia_marker = new google.maps.Marker({
-    //     position: parks[0]['pos'],
-    //     map: map,
-    //     icon: npsLogo
-    // });
     map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
 }
 
@@ -489,19 +451,6 @@ function addMarkerToMap(parkIndex){
     });
     markers.push(new_marker);
 }
-
-//purpose:
-//param: none
-//local: none
-//global: none
-//functions called: none
-//returns: none
-function removeMarkersFromMap(){
-    setMapOnAll(null);
-    markers = [];
-    // parksVisited = []; //not necessary here
-}
-
 
 //purpose: based on an image source, determines which index in the park array to grab
 //param: imageSrc
@@ -557,82 +506,4 @@ function getDistanceBetweenParks(parkIndex1, parkIndex2) {
     }
 
     return distancesArray[parkIndex1 - 1][parkIndex2];
-}
-
-
-
-function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-    var waypts = [];
-    if(parksVisited.length > 2){
-        for(var i = 1; i < parksVisited.length - 1; i++){
-            // console.log('parksVisited: ', parksVisited);
-            console.log('pos: ', parks[parksVisited[i]]['pos']);
-            waypts.push({
-                // location: parks[parksVisited[i]]['pos'],
-                location: parks[parksVisited[i]]['officalName'],        //alternate
-                stopover: true
-            });
-        }
-    }
-    // var checkboxArray = document.getElementById('waypoints');
-    // for (var i = 0; i < parksVisited.length; i++) {
-    //     waypts.push({
-    //         location: parks[index]['pos'],
-    //         stopover: true
-    //     });
-        // if (checkboxArray.options[i].selected) {
-        //     waypts.push({
-        //         location: checkboxArray[i].value,
-        //         stopover: true
-        //     });
-        // }
-    // }
-
-    directionsService.route({
-        //find out how this origin and destination is stored (is it an id or a location object)
-        origin: parks[parksVisited[0]]['placeId'],
-        destination: parks[parksVisited[parksVisited.length - 1]]['placeId'],
-        // waypoints: waypts,
-        travelMode: 'DRIVING',
-        // optimizeWaypoints: false,
-
-
-        // origin: LatLng | String | google.maps.Place,         //NOT SURE IF THIS IS RIGHT
-        // destination: LatLng | String | google.maps.Place,    //NOT SURE IF THIS IS RIGHT
-        // travelMode: 'DRIVING',
-        // transitOptions: {},      //NOT NECESSARY WHEN TRAVEL_MODE IS 'DRIVING'
-        // drivingOptions: DrivingOptions,  //PREMIUM ONLY??
-        // unitSystem: UnitSystem,     //PROB WON'T BE NECESSARY
-        // waypoints[]: DirectionsWaypoint,
-        // optimizeWaypoints: Boolean,
-        // provideRouteAlternatives: Boolean,
-        // avoidHighways: Boolean,
-        // avoidTolls: Boolean,
-        // region: String
-    }, function(response, status) {
-        console.log('direction service.route');
-        // console.log('origin: ', parks[parksVisited[0]]['placeId']);
-        // console.log('destination: ', parks[parksVisited[parksVisited.length - 1]]['placeId']);
-        console.log('origin: ', parks[parksVisited[0]]['officalName']);                                 //alternate
-        console.log('destination: ', parks[parksVisited[parksVisited.length - 1]]['officialName']);     //alternate
-        console.log(response);
-        console.log(status);
-        if (status === 'OK') {
-            directionsDisplay.setDirections(response);
-            var route = response.routes[0];
-            var summaryPanel = document.getElementById('directions-panel');
-            summaryPanel.innerHTML = '';
-            // For each route, display summary information.
-            for (var i = 0; i < route.legs.length; i++) {
-                var routeSegment = i + 1;
-                // summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
-                //     '</b><br>';
-                // summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
-                // summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
-                summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
-            }
-        } else {
-            window.alert('Directions request failed due to ' + status);
-        }
-    });
 }
