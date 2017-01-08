@@ -1,3 +1,5 @@
+//idea separate arrays for markers and parksVisited. markers is physical markers collection for map and parksVisited is a list of indexes of the parks in order
+
 
 //template
 
@@ -24,14 +26,26 @@ var markers = [];
 var parksVisited = [];
 var npsLogo = null;
 var map = null;
-// var currentPark = null;
-
+var prevPark = null;
+var currentPark = null;
+// array showing distances between parks
+// each nested array represents the distance a park and all parks that come before it alphabetically, the first being Arches
+var distancesArray = [
+    [2510],
+    [1900, 2404],
+    [2896, 308, 2340],
+    [1809, 1218, 1189, 1241],
+    [3336, 1146, 3382, 1264, 2346],
+    [796, 1970, 1049, 2130, 923, 2820],
+    [2375, 548, 2554, 685, 1411, 830, 2006],
+    [3105, 713, 2954, 582, 1760, 879, 2650, 828]
+];
 
 //array of national parks and their positions in geocoded form
 var parks = [
-    {name: 'acadia',  pos: {lat: 44.338556, lng: -68.273335}},
-    {name: 'arches', pos: {lat: 38.733081, lng: -109.592514}},
-    {name: 'everglades', pos: {lat: 25.286615, lng: -80.89865}},
+    {officialName: 'acadia national park', name: 'acadia', pos: {lat: 44.338556, lng: -68.273335}, placeId: 'ChIJJSmiDrKjrkwRhFVV_A4i32I'},
+    {officialName: 'arches national park', name: 'arches', pos: {lat: 38.733081, lng: -109.592514}, placeId: 'ChIJUaoNhhr2yoARlcQo0WnqQk8'},
+    {officialName: 'everglades national park', name: 'everglades', pos: {lat: 25.286615, lng: -80.89865}, placeId: 'ChIJldex4mqr0IgRPtkgx65AyR8'},
     {name: 'grandCanyon', pos: {lat: 36.106965, lng: -112.112997}},
     {name: 'hotSprings', pos: {lat: 34.521692, lng: -93.042354}},
     {name: 'olympic', pos: {lat: 47.802107, lng: -123.604352}},
@@ -44,10 +58,10 @@ var parks = [
  //param: none
  //local: none
  //global: none
- //functions called: initializeGameBoard
+ //functions called: initializeGame
  //returns: none
  $(document).ready(function () {
-     initializeGameBoard();
+     initializeGame();
  });
 
 
@@ -57,8 +71,8 @@ var parks = [
  //global: none
  //functions called: createInitialArray, createSingleCard
  //returns: none
- function initializeGameBoard(){
-     totalPossibleMatches = 2;        //normal 9 but temp 2 while testing modal
+ function initializeGame(){
+     totalPossibleMatches = 9;        //normal 9 but temp 3 while testing waypoints
 
      matches = 0;
      attempts = 0;
@@ -68,13 +82,8 @@ var parks = [
      firstCardClicked = null;
      secondCardClicked = null;
 
+     markers = [];
      parksVisited = [];
-     currentPark = null;
-
-     // markers = [];
-     // map = $('#map');
-     // map = new google.maps.Map($('#map-canvas')[0], options);
-     // map = new google.maps.Map($('#map')[0], options);
      //****************prob change this******************
 //what i want: 3 rows. within each row 6 divs with class card
 // a div card, with div front and div back within. within div front an image. within div back an image
@@ -265,20 +274,32 @@ function applyEventHandlers(){
  function makeCardsMatch() {
      // console.log('cards match');        //leave for now
      // console.log(firstCardClicked);
-     // console.log(secondCardClicked);
      firstCardClicked.addClass('matched');
      secondCardClicked.addClass('matched');
      firstCardClicked.removeClass('cardClicked');
      secondCardClicked.removeClass('cardClicked');
 
-     //add method to add marker to the map here
-     // console.log(firstCardClicked.find('.front').css('background-image'));
-     addMarkerToMap(firstCardClicked.find('.front').css('background-image'));
-
      var transparency = $('<div>').addClass('card transparency');
      $(firstCardClicked).append(transparency);
      transparency = $('<div>').addClass('card transparency');
      $(secondCardClicked).append(transparency);
+
+     var parkIndex = findArrayIndexFromImage(firstCardClicked.find('.front').css('background-image'));
+
+     //prob combine all these compenents into an update map function
+     parksVisited.push(parkIndex);
+
+     //add method to add marker to the map here
+     //also pushes a marker to the markers array
+     addMarkerToMap(parkIndex);
+
+     if(parksVisited.length > 1) {
+         prevPark = currentPark;
+         currentPark = parkIndex;
+         distanceTraveled += getDistanceBetweenParks(prevPark, currentPark);
+     }else{
+         currentPark = parkIndex;
+     }
 
      firstCardClicked = null;
      secondCardClicked = null;
@@ -332,7 +353,7 @@ function applyEventHandlers(){
      $('.gamesPlayed .value').text(gamesPlayed);
      $('.attempts .value').text(attempts);
      $('.accuracy .value').text(accuracy);
-     $('.distance .value').text(distanceTraveled);
+     $('.distance .value').text(distanceTraveled + " miles");
  }
 
  //purpose: calculates the user's accuracy. If the attempts are zero, it sets the accuracy to zero to prevent dividing by zero
@@ -368,16 +389,11 @@ function applyEventHandlers(){
      // $('.card').removeClass('cardClicked matched');         //makes all cards clickable once more by removing 'cardClicked' and 'matched' classes
      $('.card').off('click');                               //temporarily removes all click handlers, so that they won't fire twice when restarted
      // $('.card').click(clickedCard($(this)));                //adds the click handler for the 'card' class  //click handlers applied when new game board generated
-     // firstCardClicked = null;
-     // secondCardClicked = null;
-     // $('#gameWon').css('display', 'none');                  //reset win features        //will need to be placed outside of cardArea
-     // removeMarkersFromMap();
-
-     //for some reason i can not place this in the initialize game area
+     $('#gameWon').css('display', 'none');                  //reset win features        //will need to be placed outside of cardArea
      initMap();
 
      $('.reset').off('click');
-     initializeGameBoard();
+     initializeGame();
  }
 
  //purpose: calculates the user's statistics of the game, namely accuracy
@@ -411,6 +427,7 @@ function initMap() {
         disableDefaultUI: true
     });
     markers = [];
+    parksVisited = [];
     npsLogo = {
         url: 'resources/nps_logo_transparent_tiny.png'
     };
@@ -424,28 +441,16 @@ function initMap() {
 //global: none
 //functions called: none
 //returns: none
-function addMarkerToMap(imageSrc){
-    var index = findArrayIndexFromImage(imageSrc);
+function addMarkerToMap(parkIndex){
+
     var new_marker = new google.maps.Marker({
-        position: parks[index]['pos'],
+        position: parks[parkIndex]['pos'],
         map: map,
         animation: google.maps.Animation.DROP,
         icon: npsLogo
     });
     markers.push(new_marker);
 }
-
-//purpose:
-//param: none
-//local: none
-//global: none
-//functions called: none
-//returns: none
-function removeMarkersFromMap(){
-    setMapOnAll(null);
-    markers = [];
-}
-
 
 //purpose: based on an image source, determines which index in the park array to grab
 //param: imageSrc
@@ -488,7 +493,17 @@ function findArrayIndexFromImage(imageSrc) {
     return index;
 }
 
-//distances between parks gathered from Google Maps
-function getDistanceBetweenParks(park1, park2) {
+//distances between parks gathered based on information from Google maps
+//
+function getDistanceBetweenParks(parkIndex1, parkIndex2) {
+    //no need to check if the two park indices are equal because parks should never be the same
+    //we want the first park's index to be larger because it corresponds with the rows in the distances array. The distancesArray runs through parks with index 1 to index 7.
+    //the second park corresponds with the element nested within the row of the distancesArray
+    if(parkIndex1 < parkIndex2){
+        var temp = parkIndex1;
+        parkIndex1 = parkIndex2;
+        parkIndex2 = temp;
+    }
 
+    return distancesArray[parkIndex1 - 1][parkIndex2];
 }
