@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>National Parks Memory Matching Game</title>
+    <!-- link to external stylesheet -->
+    <link rel="stylesheet" type="text/css" href="style.css"/>
     <!-- Bootstrap link -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"
           type="text/css"/>
     <!-- link to jquery library -->
     <link href="https://code.jquery.com/jquery-2.1.4.min.js"/>
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-    <!-- link to external stylesheet -->
-    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="script.js"></script>
-    <!--<script async defer-->
-            <!--src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkUOdZ5y7hMm0yrcCQoCvLwzdM6M8s5qk&callback=initMap">-->
-    <!--</script>-->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArSDeBxkOijJ6rGZl5vAlAExI1daYVZVc&callback=initMap">
+    </script>
 </head>
 <body>
 <!-- header container -->
@@ -42,19 +44,18 @@
         <div class="label">Accuracy</div>
         <div class="value"></div>
     </div>
+    <div class="distance">
+        <div class="label">Distance Traveled</div>
+        <div class="value"></div>
+    </div>
     <input type="button" class="reset" value="New Game">
 </div>
 <!-- game area container -->
 <!-- the area where the game takes place -->
-<!-- features to include: 18 cards fronts and 18 card backs -->
+<!-- features to include: 18 cards with fronts and backs -->
 <div class="mainContent" id="gameArea">
     <div id="cardArea"></div>
     <div id="map"></div>
-    <!-- Replace the value of the key parameter with your own API key. -->
-
-    <div >
-
-    </div>
 </div>
 
 <!-- Modal -->
@@ -64,7 +65,10 @@
         <div class="modal-content">
             <div class="modal-body">
                 <h3>You won! What are you a park ranger, now?</h3>
-                <img src="resources/Junior_Ranger_logo.gif">
+                <img src="resources/Junior_Ranger_logo_transparent.gif">
+                <br>
+                <button type="button" class="" data-dismiss="modal">Close</button>
+                <button type="button" class="reset" data-dismiss="modal">New Game</button>
             </div>
         </div>
     </div>
