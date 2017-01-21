@@ -114,7 +114,7 @@ header img{
     background-color: saddlebrown;
     z-index: 2;
 
-    background-image: url('resources/nps_logo_transparent.png');
+    background-image: url('resources/nps_logo_transparent_large.png');
     background-size: 100% 100%;
 
     -webkit-backface-visibility: hidden;
