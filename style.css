@@ -147,8 +147,12 @@ header img{
     display: none;
     /*height: 20%;*/
     width: 100%;
-    color: white;
+    /*background-color: #99542c;*/
+    color: black;
     text-align: center;
+}
+#gameWonModal .modal-content{
+    background-color: #99542c;
 }
 #gameWonModal img{
     height: 200px;

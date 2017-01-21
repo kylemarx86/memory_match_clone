@@ -73,6 +73,7 @@ var parks = [
  //returns: none
  function initializeGame(){
      totalPossibleMatches = 9;        //normal 9 but temp 3 while testing waypoints
+                                        //idea use directory operations to find out how many resources there are to determine the totalPossibleMatches
 
      matches = 0;
      attempts = 0;
