@@ -222,6 +222,18 @@ header img{
         height: 105px;
     }
 }
+@media (max-width: 650px) {
+    .card{
+        width: 50px;
+        height: 75px;
+    }
+}
+@media (max-width: 480px){
+    .card{
+        width: 30px;
+        height: 45px;
+    }
+}
 @media (max-width: 330px) {
     .card{
         width: 25px;
