@@ -203,6 +203,9 @@ header img{
         width: 100px;
         height: 150px;
     }
+    #map{
+
+    }
 }
 @media (max-width: 1800px) {
     .card{
@@ -217,17 +220,30 @@ header img{
     }
 }
 @media (max-width: 715px) {
-    .card{
-        width: 70px;
-        height: 105px;
+    /*.card{*/
+        /*width: 70px;*/
+        /*height: 105px;*/
+    /*}*/
+    #stats{
+        display: none;
+    }
+    .mainContent{
+        width: 100%;
     }
 }
 @media (max-width: 650px) {
     .card{
-        width: 50px;
-        height: 75px;
+        width: 70px;
+        height: 105px;
+    }
+    #stats{
+        display: none;
+    }
+    .mainContent{
+        width: 100%;
     }
 }
+
 @media (max-width: 480px){
     .card{
         width: 30px;
