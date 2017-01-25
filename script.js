@@ -419,6 +419,7 @@ function applyEventHandlers(){
 //returns: none
 function initMap() {
     // var CenterOfUSA = {lat: 38, lng: -97.5};
+    //this is a center of the US for my mapping purposes
     var CenterOfUSA = {lat: 38, lng: -100};
     //var CenterOfUSA = {lat: 39.828127, lng: -98.579404};  //old
 
