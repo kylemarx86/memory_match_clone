@@ -20,16 +20,17 @@ header h1{
 }
 header h5{
     /*text-align: right;*/
+    margin: 5px;
     display: inline-block;
     float: right;
-    clear: right;
+    clear: both;
 }
 header a{
     color: white;
 }
 header img{
     position: absolute;
-    top:0;
+    top: 0;
     left: 0;
     /*float: left;*/
     height: 100%;
@@ -262,7 +263,6 @@ header img{
         width: 100%;
     }
     .menuDropDown{
-        /*display: inline-block;*/
         display: inline-block;
     }
     /*find out a good size for map*/
@@ -276,17 +276,20 @@ header img{
         width: 70px;
         height: 105px;
     }
-    #stats{
-        display: none;
+}
+@media (max-width: 580px){
+    header{
+        height: 10%;
     }
+    header h1{
+        font-size: 1.75em;
+    }
+    /*header a{*/
+        /*position: relative;*/
+        /*top: -5%;*/
+    /*}*/
     .mainContent{
-        width: 100%;
-    }
-    .menuDropDown{
-        display: inline-block;
-        /*width: auto;*/
-        /*height: 50px;*/
-        /*background-color: darkgray;*/
+        height: 90%;
     }
 }
 
@@ -295,35 +298,11 @@ header img{
         width: 30px;
         height: 45px;
     }
-    #stats{
-        display: none;
-    }
-    .mainContent{
-        width: 100%;
-    }
-    .menuDropDown{
-        display: inline-block;
-        /*width: auto;*/
-        /*height: 50px;*/
-        background-color: darkgray;
-    }
 }
 @media (max-width: 330px) {
     .card{
         width: 25px;
         height: 35px;
-    }
-    #stats{
-        display: none;
-    }
-    .mainContent{
-        width: 100%;
-    }
-    .menuDropDown{
-        display: inline-block;
-        /*width: auto;*/
-        /*height: 50px;*/
-        background-color: darkgray;
     }
 }
 
