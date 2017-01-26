@@ -4,15 +4,25 @@ body{
 /* styling for the header*/
 header{
     position: absolute;
-    top:0;
+    top: 0;
     height: 15%;
     width: 100%;
     background-color: #2d4b1e;
     color: white;
     text-align: center;
 }
+header h1{
+    /*float: right;*/
+    margin-top: 20px;
+    margin-bottom: 0;
+    display: block;
+/*maybe change font size if the screen is too small*/
+}
 header h5{
-    text-align: right;
+    /*text-align: right;*/
+    display: inline-block;
+    float: right;
+    clear: right;
 }
 header a{
     color: white;
@@ -21,8 +31,21 @@ header img{
     position: absolute;
     top:0;
     left: 0;
+    /*float: left;*/
     height: 100%;
     width: auto;
+}
+.menuDropDown{
+    display: none;
+    position: absolute;
+    /*margin: auto 0;*/
+    background-color: darkgray;
+    border-sizing: border-box;
+    padding: 5px;
+    border: 1px solid black;
+    bottom: 0;
+    /*float: right;*/
+    /*clear: right;*/
 }
 /* styling for the side stats bar*/
 .label{
@@ -204,6 +227,9 @@ header img{
         width: 788px;
         height: 385px;
     }
+    .menuDropDown{
+        display: none;
+    }
 }
 @media (max-width: 1800px) {
     .card{
@@ -226,11 +252,18 @@ header img{
         /*width: 70px;*/
         /*height: 105px;*/
     /*}*/
+    header h1{
+        font-size: 2em;
+    }
     #stats{
         display: none;
     }
     .mainContent{
         width: 100%;
+    }
+    .menuDropDown{
+        /*display: inline-block;*/
+        display: inline-block;
     }
     /*find out a good size for map*/
     /*#map{*/
@@ -249,6 +282,12 @@ header img{
     .mainContent{
         width: 100%;
     }
+    .menuDropDown{
+        display: inline-block;
+        /*width: auto;*/
+        /*height: 50px;*/
+        /*background-color: darkgray;*/
+    }
 }
 
 @media (max-width: 480px){
@@ -256,10 +295,35 @@ header img{
         width: 30px;
         height: 45px;
     }
+    #stats{
+        display: none;
+    }
+    .mainContent{
+        width: 100%;
+    }
+    .menuDropDown{
+        display: inline-block;
+        /*width: auto;*/
+        /*height: 50px;*/
+        background-color: darkgray;
+    }
 }
 @media (max-width: 330px) {
     .card{
         width: 25px;
         height: 35px;
     }
+    #stats{
+        display: none;
+    }
+    .mainContent{
+        width: 100%;
+    }
+    .menuDropDown{
+        display: inline-block;
+        /*width: auto;*/
+        /*height: 50px;*/
+        background-color: darkgray;
+    }
 }
+

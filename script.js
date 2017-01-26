@@ -425,6 +425,7 @@ function initMap() {
 
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 4,
+        // zoom: 3,    //temp for testing of the mapsize
         center: CenterOfUSA,
         disableDefaultUI: true
     });
