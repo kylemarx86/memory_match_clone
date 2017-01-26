@@ -18,15 +18,28 @@ header h1{
     display: block;
 /*maybe change font size if the screen is too small*/
 }
+.linkContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 0;
+}
 header h5{
-    /*text-align: right;*/
+    text-align: right;
     margin: 5px;
-    display: inline-block;
-    float: right;
-    clear: both;
+    display: block;
+    /*float: right;*/
+    /*clear: both;*/
 }
 header a{
     color: white;
+}
+header a:hover{
+    color: darkgray;
+    text-decoration: none;
 }
 header img{
     position: absolute;
@@ -282,7 +295,7 @@ header img{
         height: 10%;
     }
     header h1{
-        font-size: 1.75em;
+        font-size: 1.5em;
     }
     /*header a{*/
         /*position: relative;*/
