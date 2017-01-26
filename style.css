@@ -62,17 +62,26 @@ header img{
     bottom: 0;
 }
 /* styling for the side stats bar*/
-.label{
+.statsLabel{
+
     height: 30px;
     width: 100%;
     background-color: inherit;
     clear: left;
     text-align: center;
+    font-size: 1.25em;
+    color: white;
 }
-.value{
+.valueContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     height: 60px;
     width: 100%;
     background-color: white;
+}
+.value{
+    font-size: 1.5em;
 }
 #stats input{
     display: block;
@@ -100,7 +109,6 @@ header img{
     height: 50%;
     margin: 0 auto;
     padding: 0;
-
 }
 
 /*styling for cards*/
