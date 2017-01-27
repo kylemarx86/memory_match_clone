@@ -1,42 +1,87 @@
+/*used colors for reference*/
+/*saddlebrown;*/
+/*darkgray;*/
+/*#496647;*/
+/*#99542c;*/
+/*#c56c39;*/
+/*#2d4b1e;*/
+
 body{
     margin: 0;
 }
 /* styling for the header*/
 header{
     position: absolute;
-    top:0;
+    top: 0;
     height: 15%;
     width: 100%;
     background-color: #2d4b1e;
     color: white;
     text-align: center;
 }
+header h1{
+    margin-top: 20px;
+    margin-bottom: 0;
+    display: block;
+}
+.linkContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 0;
+}
 header h5{
     text-align: right;
+    margin: 5px;
+    display: block;
 }
 header a{
     color: white;
 }
+header a:hover{
+    color: darkgray;
+    text-decoration: none;
+}
 header img{
     position: absolute;
-    top:0;
+    top: 0;
     left: 0;
     height: 100%;
     width: auto;
 }
+.menuDropDown{
+    display: none;
+    position: absolute;
+    background-color: darkgray;
+    box-sizing: border-box;
+    padding: 5px;
+    border: 1px solid black;
+    bottom: 0;
+}
 /* styling for the side stats bar*/
-.label{
+.statsLabel{
+
     height: 30px;
     width: 100%;
     background-color: inherit;
     clear: left;
-
     text-align: center;
+    font-size: 1.25em;
+    color: white;
 }
-.value{
+.valueContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     height: 60px;
     width: 100%;
     background-color: white;
+}
+.value{
+    font-size: 1.5em;
 }
 #stats input{
     display: block;
@@ -61,11 +106,9 @@ header img{
     display: block;
     bottom: 0;
     left: 0;
-    /*width: 100%;*/
     height: 50%;
     margin: 0 auto;
     padding: 0;
-
 }
 
 /*styling for cards*/
@@ -74,11 +117,9 @@ header img{
     position: relative;
     width: 100px;
     height: 150px;
-
     display:inline-block;
     margin: 5px;
-    /*border: 1px solid black;*/
-    border-radius: 10px;
+    border-radius: 10%;
 }
 /* hide back of pane during swap */
 .front, .back {
@@ -89,7 +130,7 @@ header img{
     display: inline-block;
     vertical-align: middle;
     border: 1px solid black;
-    border-radius: 10px;
+    border-radius: 10%;
     top: 0;
     left: 0;
 
@@ -142,9 +183,7 @@ header img{
 
 #gameWonModal{
     display: none;
-    /*height: 20%;*/
     width: 100%;
-    /*background-color: #99542c;*/
     color: black;
     text-align: center;
 }
@@ -164,7 +203,6 @@ header img{
     left: 0;
     height: 85%;
     width: 150px;
-    /*background-color: #496647;*/
     background-color: #99542c;
 }
 .sideNav ul{
@@ -184,7 +222,6 @@ header img{
     width: calc(100% - 150px);
     margin: 0;
     padding: 10px;
-    /*background-color: #99542c;*/
     background-color: #c56c39;
     color: white;
 }
@@ -204,6 +241,9 @@ header img{
         width: 788px;
         height: 385px;
     }
+    .menuDropDown{
+        display: none;
+    }
 }
 @media (max-width: 1800px) {
     .card{
@@ -222,17 +262,19 @@ header img{
     }
 }
 @media (max-width: 715px) {
-    /*.card{*/
-        /*width: 70px;*/
-        /*height: 105px;*/
-    /*}*/
+    header h1{
+        font-size: 2em;
+    }
     #stats{
         display: none;
     }
     .mainContent{
         width: 100%;
     }
-    /*find out a good size for map*/
+    .menuDropDown{
+        display: inline-block;
+    }
+    /*find out a good size for map and use it here*/
     /*#map{*/
         /*width: 100px;*/
         /*height: 100px;*/
@@ -243,14 +285,18 @@ header img{
         width: 70px;
         height: 105px;
     }
-    #stats{
-        display: none;
+}
+@media (max-width: 580px){
+    header{
+        height: 10%;
+    }
+    header h1{
+        font-size: 1.5em;
     }
     .mainContent{
-        width: 100%;
+        height: 90%;
     }
 }
-
 @media (max-width: 480px){
     .card{
         width: 30px;
@@ -263,3 +309,4 @@ header img{
         height: 35px;
     }
 }
+
