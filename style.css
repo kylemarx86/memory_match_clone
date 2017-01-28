@@ -61,6 +61,9 @@ header img{
     border: 1px solid black;
     bottom: 0;
 }
+.menuDropDown:hover{
+
+}
 /* styling for the side stats bar*/
 .statsLabel{
 

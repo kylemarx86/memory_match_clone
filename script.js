@@ -186,6 +186,7 @@ function applyEventHandlers(){
     displayStats();
     $(".card").click(clickedCard($(this)));
     $('.reset').click(resetGame);
+    $('.menuDropDown').click(displayStatsWindow);
 }
 
  //purpose: handles click events on divs with class card
@@ -510,3 +511,7 @@ function getDistanceBetweenParks(parkIndex1, parkIndex2) {
 
     return distancesArray[parkIndex1 - 1][parkIndex2];
 }
+
+// function displayStatsWindow(){
+//
+// }
