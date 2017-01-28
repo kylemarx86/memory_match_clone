@@ -60,6 +60,8 @@ header img{
     padding: 5px;
     border: 1px solid black;
     bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
 .menuDropDown:hover{
 
@@ -270,6 +272,8 @@ header img{
     }
     #stats{
         display: none;
+        left: 50%;
+        transform: translate(-50%, 0);
     }
     .mainContent{
         width: 100%;

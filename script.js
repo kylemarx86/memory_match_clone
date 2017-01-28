@@ -43,15 +43,15 @@ var distancesArray = [
 
 //array of national parks and their positions in geocoded form
 var parks = [
-    {officialName: 'acadia national park', name: 'acadia', pos: {lat: 44.338556, lng: -68.273335}, placeId: 'ChIJJSmiDrKjrkwRhFVV_A4i32I'},
-    {officialName: 'arches national park', name: 'arches', pos: {lat: 38.733081, lng: -109.592514}, placeId: 'ChIJUaoNhhr2yoARlcQo0WnqQk8'},
-    {officialName: 'everglades national park', name: 'everglades', pos: {lat: 25.286615, lng: -80.89865}, placeId: 'ChIJldex4mqr0IgRPtkgx65AyR8'},
-    {name: 'grandCanyon', pos: {lat: 36.106965, lng: -112.112997}},
-    {name: 'hotSprings', pos: {lat: 34.521692, lng: -93.042354}},
-    {name: 'olympic', pos: {lat: 47.802107, lng: -123.604352}},
-    {name: 'shenandoah', pos: {lat: 38.292756, lng: -78.679584 }},
-    {name: 'yellowstone', pos: {lat: 44.427968, lng: -110.588454}},
-    {name: 'yosemite', pos: {lat: 37.865101, lng: -119.538329}},
+    {properName: 'Acadia', name: 'acadia', pos: {lat: 44.338556, lng: -68.273335}, placeId: 'ChIJJSmiDrKjrkwRhFVV_A4i32I'},
+    {properName: 'Arches', name: 'arches', pos: {lat: 38.733081, lng: -109.592514}, placeId: 'ChIJUaoNhhr2yoARlcQo0WnqQk8'},
+    {properName: 'Everglades', name: 'everglades', pos: {lat: 25.286615, lng: -80.89865}, placeId: 'ChIJldex4mqr0IgRPtkgx65AyR8'},
+    {properName: 'Grand Canyon', name: 'grandCanyon', pos: {lat: 36.106965, lng: -112.112997}},
+    {properName: 'Hot Springs', name: 'hotSprings', pos: {lat: 34.521692, lng: -93.042354}},
+    {properName: 'Olympic', name: 'olympic', pos: {lat: 47.802107, lng: -123.604352}},
+    {properName: 'Shenandoah', name: 'shenandoah', pos: {lat: 38.292756, lng: -78.679584 }},
+    {properName: 'Yellowstone', name: 'yellowstone', pos: {lat: 44.427968, lng: -110.588454}},
+    {properName: 'Yosemite', name: 'yosemite', pos: {lat: 37.865101, lng: -119.538329}},
 ];
 
  //purpose: set up the game board when the document is loaded
