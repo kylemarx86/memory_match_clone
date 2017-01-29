@@ -52,23 +52,41 @@ header img{
     height: 100%;
     width: auto;
 }
+.statsContainer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 85%;
+    width: 150px;
+    background-color: #99542c;
+}
 .menuDropDown{
-    display: none;
+    /*display: inline-block;*/
     position: absolute;
     background-color: darkgray;
     box-sizing: border-box;
-    padding: 5px;
+    padding: auto;
     border: 1px solid black;
-    bottom: 0;
+    height: 5%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*height: auto;*/
+    /*width: auto;*/
+    vertical-align: middle;
+    top: -5%;
     left: 50%;
     transform: translate(-50%, 0);
 }
-.menuDropDown:hover{
-
-}
+/*.menuDropDown:hover + #stats{*/
+    /*display: inline-block;*/
+/*}*/
+/*#stats:hover{*/
+    /*display: block;*/
+/*}*/
 /* styling for the side stats bar*/
 .statsLabel{
-
     height: 30px;
     width: 100%;
     background-color: inherit;
@@ -201,9 +219,10 @@ header img{
     display: block;
     margin: 0 auto;
 }
-/*styling for about page*/
+/*styling for about page. this applies to the game as well. consider moving it*/
 .sideNav {
     position: absolute;
+    display: inline-block;
     bottom: 0;
     left: 0;
     height: 85%;
@@ -216,6 +235,7 @@ header img{
 .sideNav a{
     color: white;
 }
+/*applies to both the game and about page*/
 .mainContent{
     position: absolute;
     bottom: 0;
@@ -259,6 +279,9 @@ header img{
         width: 788px;
         height: 385px;
     }
+    .menuDropDown{
+        display: none;
+    }
 }
 @media (max-width: 1160px) {
     .card{
@@ -270,17 +293,22 @@ header img{
     header h1{
         font-size: 2em;
     }
-    #stats{
-        display: none;
+    .sideNav{
+        /*display: none;*/
         left: 50%;
         transform: translate(-50%, 0);
+    }
+    #stats{
+        display: none;
+    }
+    .menuDropDown{
+        /*display: inline-block;*/
+        display: flex;
     }
     .mainContent{
         width: 100%;
     }
-    .menuDropDown{
-        display: inline-block;
-    }
+
     /*find out a good size for map and use it here*/
     /*#map{*/
         /*width: 100px;*/
@@ -301,6 +329,9 @@ header img{
         font-size: 1.5em;
     }
     .mainContent{
+        height: 90%;
+    }
+    .sideNav{
         height: 90%;
     }
 }

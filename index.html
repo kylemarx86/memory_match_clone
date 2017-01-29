@@ -35,40 +35,42 @@
         <!--idea: set this target to activate a modal saying settings are on their way-->
         <h5><a href="about.html">About</a></h5>
     </div>
-    <div class="menuDropDown">
-        <span class="glyphicon glyphicon-chevron-down"></span>See Stats
-    </div>
 </header>
 
 <!-- stats container -->
 <!-- container to hold statistics and options for resetting these -->
 <!-- features to have: games played, attempts (times clicked on cards), accuracy (ratio of correct clicks to total clicks for current game), reset button -->
-<div class="sideNav" id="stats">
-    <div class="gamesPlayed">
-        <div class="statsLabel">Games Played</div>
-        <div class="valueContainer">
-            <div class="value"></div>
-        </div>
+<div class="sideNav">
+    <div class="menuDropDown">
+        <span class="glyphicon glyphicon-chevron-down"></span>See Stats
     </div>
-    <div class="attempts">
-        <div class="statsLabel">Attempts</div>
-        <div class="valueContainer">
-            <div class="value"></div>
+    <div id="stats">
+        <div class="gamesPlayed">
+            <div class="statsLabel">Games Played</div>
+            <div class="valueContainer">
+                <div class="value"></div>
+            </div>
         </div>
-    </div>
-    <div class="accuracy">
-        <div class="statsLabel">Accuracy</div>
-        <div class="valueContainer">
-            <div class="value"></div>
+        <div class="attempts">
+            <div class="statsLabel">Attempts</div>
+            <div class="valueContainer">
+                <div class="value"></div>
+            </div>
         </div>
-    </div>
-    <div class="distance">
-        <div class="statsLabel">Distance Traveled</div>
-        <div class="valueContainer">
-            <div class="value"></div>
+        <div class="accuracy">
+            <div class="statsLabel">Accuracy</div>
+            <div class="valueContainer">
+                <div class="value"></div>
+            </div>
         </div>
+        <div class="distance">
+            <div class="statsLabel">Distance Traveled</div>
+            <div class="valueContainer">
+                <div class="value"></div>
+            </div>
+        </div>
+        <input type="button" class="reset" value="New Game">
     </div>
-    <input type="button" class="reset" value="New Game">
 </div>
 <!-- game area container -->
 <!-- the area where the game takes place -->
