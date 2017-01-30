@@ -187,7 +187,7 @@ function applyEventHandlers(){
     $(".card").click(clickedCard($(this)));
     $('.reset').click(resetGame);
     $('.menuDropDown').click(displayStatsWindow);
-    $('.menuDropDown').hover(displayStatsWindow);
+    // $('.menuDropDown').hover(displayStatsWindow);
 }
 
  //purpose: handles click events on divs with class card
