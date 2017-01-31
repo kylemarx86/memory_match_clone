@@ -5,6 +5,7 @@
 /*#99542c;*/
 /*#c56c39;*/
 /*#2d4b1e;*/
+/*#6e6e6e;*/
 
 body{
     margin: 0;
@@ -53,17 +54,46 @@ header img{
     width: auto;
 }
 .menuDropDown{
-    display: none;
+    /*display: inline-block;*/
     position: absolute;
     background-color: darkgray;
     box-sizing: border-box;
-    padding: 5px;
+    /*padding: auto;*/
     border: 1px solid black;
-    bottom: 0;
+    /*height: 5%;*/
+    height: 40px;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    /*height: auto;*/
+    /*width: auto;*/
+    vertical-align: middle;
+    top: -5%;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
+#stats{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: 5;
+    height: auto;
+}
+/*.sideNav:hover{*/
+    /*display: inline-block;*/
+/*}*/
+ /*.menuDropDown:hover + #stats{*/
+     /*display: inline-block;*/
+ /*}*/
+/*.menuDropDown:hover + #stats{*/
+    /*display: inline-block;*/
+/*}*/
+/*#stats:hover{*/
+    /*display: block;*/
+/*}*/
 /* styling for the side stats bar*/
 .statsLabel{
-
     height: 30px;
     width: 100%;
     background-color: inherit;
@@ -106,6 +136,7 @@ header img{
     display: block;
     bottom: 0;
     left: 0;
+    width: 788px;
     height: 50%;
     margin: 0 auto;
     padding: 0;
@@ -120,6 +151,7 @@ header img{
     display:inline-block;
     margin: 5px;
     border-radius: 10%;
+    z-index: 1;
 }
 /* hide back of pane during swap */
 .front, .back {
@@ -196,14 +228,17 @@ header img{
     display: block;
     margin: 0 auto;
 }
-/*styling for about page*/
+/*styling for about page. this applies to the game as well. consider moving it*/
 .sideNav {
     position: absolute;
-    bottom: 0;
+    display: inline-block;
+    /*bottom: 0;*/
+    top: 15%;
     left: 0;
     height: 85%;
     width: 150px;
     background-color: #99542c;
+    z-index: 3;
 }
 .sideNav ul{
     color: white;
@@ -211,6 +246,7 @@ header img{
 .sideNav a{
     color: white;
 }
+/*applies to both the game and about page*/
 .mainContent{
     position: absolute;
     bottom: 0;
@@ -224,6 +260,7 @@ header img{
     padding: 10px;
     background-color: #c56c39;
     color: white;
+    /*z-index: 1;*/
 }
 .mainContent img{
     height: 150px;
@@ -232,7 +269,20 @@ header img{
     display: block;
 }
 
-@media (min-width: 1800px) {
+/*@media (min-width: 1800px) {*/
+    /*.card{*/
+        /*width: 100px;*/
+        /*height: 150px;*/
+    /*}*/
+    /*#map{*/
+        /*width: 788px;*/
+        /*height: 385px;*/
+    /*}*/
+    /*.menuDropDown{*/
+        /*display: none;*/
+    /*}*/
+/*}*/
+@media (max-width: 1800px) {
     .card{
         width: 100px;
         height: 150px;
@@ -243,16 +293,6 @@ header img{
     }
     .menuDropDown{
         display: none;
-    }
-}
-@media (max-width: 1800px) {
-    .card{
-        width: 100px;
-        height: 150px;
-    }
-    #map{
-        width: 788px;
-        height: 385px;
     }
 }
 @media (max-width: 1160px) {
@@ -265,20 +305,29 @@ header img{
     header h1{
         font-size: 2em;
     }
+    .sideNav{
+        left: 50%;
+        transform: translate(-50%, -40px);
+        height: auto;
+    }
     #stats{
         display: none;
+    }
+    .menuDropDown{
+        display: flex;
     }
     .mainContent{
         width: 100%;
     }
-    .menuDropDown{
-        display: inline-block;
+    .sideNav:hover > .menuDropDown{
+        background-color: #6e6e6e;
     }
-    /*find out a good size for map and use it here*/
-    /*#map{*/
-        /*width: 100px;*/
-        /*height: 100px;*/
-    /*}*/
+    .sideNav:hover > #stats{
+        display: block;
+        top: 40px;
+        background-color: #99542c;
+        z-index: 5;
+    }
 }
 @media (max-width: 650px) {
     .card{
@@ -295,6 +344,13 @@ header img{
     }
     .mainContent{
         height: 90%;
+    }
+    .sideNav{
+        height: auto;
+        top: 10%;
+    }
+    #stats{
+        /*top: Calc(10% - 40px);*/
     }
 }
 @media (max-width: 480px){
