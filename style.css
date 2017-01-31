@@ -54,24 +54,23 @@ header img{
     width: auto;
 }
 .menuDropDown{
-    /*display: inline-block;*/
     position: absolute;
     background-color: darkgray;
     box-sizing: border-box;
-    /*padding: auto;*/
     border: 1px solid black;
-    /*height: 5%;*/
     height: 40px;
     width: 100%;
     display: none;
     justify-content: center;
     align-items: center;
-    /*height: auto;*/
-    /*width: auto;*/
     vertical-align: middle;
     top: -5%;
     left: 50%;
     transform: translate(-50%, 0);
+}
+.menuDropDown:hover{
+    box-shadow: 2px 2px 2px #303030;
+    color: black;
 }
 #stats{
     position: absolute;
@@ -79,19 +78,9 @@ header img{
     top: 0;
     z-index: 5;
     height: auto;
+    border: 1px solid black;
+
 }
-/*.sideNav:hover{*/
-    /*display: inline-block;*/
-/*}*/
- /*.menuDropDown:hover + #stats{*/
-     /*display: inline-block;*/
- /*}*/
-/*.menuDropDown:hover + #stats{*/
-    /*display: inline-block;*/
-/*}*/
-/*#stats:hover{*/
-    /*display: block;*/
-/*}*/
 /* styling for the side stats bar*/
 .statsLabel{
     height: 30px;
