@@ -5,6 +5,7 @@
 /*#99542c;*/
 /*#c56c39;*/
 /*#2d4b1e;*/
+/*#6e6e6e;*/
 
 body{
     margin: 0;
@@ -52,15 +53,6 @@ header img{
     height: 100%;
     width: auto;
 }
-/*there is no stats container*/
-/*.statsContainer{*/
-    /*position: absolute;*/
-    /*bottom: 0;*/
-    /*left: 0;*/
-    /*height: 85%;*/
-    /*width: 150px;*/
-    /*background-color: #99542c;*/
-/*}*/
 .menuDropDown{
     /*display: inline-block;*/
     position: absolute;
@@ -68,7 +60,8 @@ header img{
     box-sizing: border-box;
     /*padding: auto;*/
     border: 1px solid black;
-    height: 5%;
+    /*height: 5%;*/
+    height: 40px;
     width: 100%;
     display: none;
     justify-content: center;
@@ -84,6 +77,8 @@ header img{
     position: absolute;
     width: 100%;
     top: 0;
+    z-index: 5;
+    height: auto;
 }
 /*.sideNav:hover{*/
     /*display: inline-block;*/
@@ -156,6 +151,7 @@ header img{
     display:inline-block;
     margin: 5px;
     border-radius: 10%;
+    z-index: 1;
 }
 /* hide back of pane during swap */
 .front, .back {
@@ -236,11 +232,13 @@ header img{
 .sideNav {
     position: absolute;
     display: inline-block;
-    bottom: 0;
+    /*bottom: 0;*/
+    top: 15%;
     left: 0;
     height: 85%;
     width: 150px;
     background-color: #99542c;
+    z-index: 3;
 }
 .sideNav ul{
     color: white;
@@ -308,50 +306,28 @@ header img{
         font-size: 2em;
     }
     .sideNav{
-        /*display: none;*/
         left: 50%;
-        transform: translate(-50%, 0);
+        transform: translate(-50%, -40px);
+        height: auto;
     }
     #stats{
         display: none;
     }
     .menuDropDown{
-        /*display: inline-block;*/
         display: flex;
     }
     .mainContent{
-        /*display: ;*/
-        /*position: relative;*/
         width: 100%;
-        /*top: 15%;*/
     }
-
     .sideNav:hover > .menuDropDown{
-        background-color: blueviolet;
+        background-color: #6e6e6e;
     }
     .sideNav:hover > #stats{
         display: block;
-        transform: translate(-50px, -150px);
-        top: 0;
-        /*z-index: 15;*/
-        /*overflow: visible;*/
+        top: 40px;
+        background-color: #99542c;
+        z-index: 5;
     }
-
-    /*.menuDropDown:hover{*/
-        /*background-color: blue;*/
-    /*}*/
-    /*.sideNav:hover #stats{*/
-        /*display: block;*/
-    /*}*/
-
-    /*.sideNav .menuDropDown:hover + #stats{*/
-        /*display: block;*/
-    /*}*/
-    /*find out a good size for map and use it here*/
-    /*#map{*/
-        /*width: 100px;*/
-        /*height: 100px;*/
-    /*}*/
 }
 @media (max-width: 650px) {
     .card{
@@ -370,7 +346,11 @@ header img{
         height: 90%;
     }
     .sideNav{
-        height: 90%;
+        height: auto;
+        top: 10%;
+    }
+    #stats{
+        /*top: Calc(10% - 40px);*/
     }
 }
 @media (max-width: 480px){
