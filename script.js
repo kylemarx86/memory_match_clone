@@ -190,6 +190,15 @@ function applyEventHandlers(){
     // $('.menuDropDown').hover(displayStatsWindow);
 }
 
+//temporarily located here
+function displayStatsWindow(){
+    console.log('show stats');
+    $('#stats').slideToggle();
+    // $('#stats').show();
+}
+
+
+
  //purpose: handles click events on divs with class card
  //param: none
  //local: thisCard- passes the card clicked
@@ -511,9 +520,4 @@ function getDistanceBetweenParks(parkIndex1, parkIndex2) {
     }
 
     return distancesArray[parkIndex1 - 1][parkIndex2];
-}
-
-function displayStatsWindow(){
-    console.log('show stats');
-    $('#stats').show();
 }

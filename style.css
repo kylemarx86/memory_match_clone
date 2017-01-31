@@ -349,9 +349,6 @@ header img{
         height: auto;
         top: 10%;
     }
-    #stats{
-        /*top: Calc(10% - 40px);*/
-    }
 }
 @media (max-width: 480px){
     .card{
