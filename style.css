@@ -1,11 +1,11 @@
 /*used colors for reference*/
-/*saddlebrown;*/
-/*darkgray;*/
-/*#496647;*/
-/*#99542c;*/
-/*#c56c39;*/
-/*#2d4b1e;*/
-/*#6e6e6e;*/
+/*saddlebrown*/
+/*darkgray*/
+/*#496647*/
+/*#99542c*/
+/*#c56c39*/
+/*#2d4b1e*/
+/*#6e6e6e*/
 
 body{
     margin: 0;
@@ -54,24 +54,23 @@ header img{
     width: auto;
 }
 .menuDropDown{
-    /*display: inline-block;*/
     position: absolute;
     background-color: darkgray;
     box-sizing: border-box;
-    /*padding: auto;*/
     border: 1px solid black;
-    /*height: 5%;*/
     height: 40px;
     width: 100%;
     display: none;
     justify-content: center;
     align-items: center;
-    /*height: auto;*/
-    /*width: auto;*/
     vertical-align: middle;
     top: -5%;
     left: 50%;
     transform: translate(-50%, 0);
+}
+.menuDropDown:hover{
+    box-shadow: 2px 2px 2px #303030;
+    color: black;
 }
 #stats{
     position: absolute;
@@ -79,19 +78,9 @@ header img{
     top: 0;
     z-index: 5;
     height: auto;
+    /*border: 1px solid black;*/
+
 }
-/*.sideNav:hover{*/
-    /*display: inline-block;*/
-/*}*/
- /*.menuDropDown:hover + #stats{*/
-     /*display: inline-block;*/
- /*}*/
-/*.menuDropDown:hover + #stats{*/
-    /*display: inline-block;*/
-/*}*/
-/*#stats:hover{*/
-    /*display: block;*/
-/*}*/
 /* styling for the side stats bar*/
 .statsLabel{
     height: 30px;
@@ -136,9 +125,13 @@ header img{
     display: block;
     bottom: 0;
     left: 0;
-    width: 788px;
-    height: 50%;
-    margin: 0 auto;
+    width: 700px;
+    height: 385px;
+    /*width: 788px;*/
+    /*width: 500px;*/
+    /*height: 50%;*/
+    /*margin: 0 auto;*/
+    margin: auto;
     padding: 0;
 }
 
@@ -232,13 +225,14 @@ header img{
 .sideNav {
     position: absolute;
     display: inline-block;
-    /*bottom: 0;*/
     top: 15%;
     left: 0;
     height: 85%;
     width: 150px;
     background-color: #99542c;
     z-index: 3;
+    border: 1px solid black;
+    border-sizing: border-box;
 }
 .sideNav ul{
     color: white;
@@ -257,7 +251,7 @@ header img{
     height: 85%;
     width: calc(100% - 150px);
     margin: 0;
-    padding: 10px;
+    padding: 5px;
     background-color: #c56c39;
     color: white;
     /*z-index: 1;*/
@@ -288,7 +282,7 @@ header img{
         height: 150px;
     }
     #map{
-        width: 788px;
+        width: 700px;
         height: 385px;
     }
     .menuDropDown{
@@ -301,7 +295,7 @@ header img{
         height: 120px;
     }
 }
-@media (max-width: 715px) {
+@media (max-width: 870px){
     header h1{
         font-size: 2em;
     }
@@ -309,9 +303,11 @@ header img{
         left: 50%;
         transform: translate(-50%, -40px);
         height: auto;
+        border: none;
     }
     #stats{
         display: none;
+        border: 1px solid black;
     }
     .menuDropDown{
         display: flex;
@@ -329,6 +325,18 @@ header img{
         z-index: 5;
     }
 }
+@media (max-width: 715px) {
+    #map{
+        width: 350px;
+        height: 250px;
+        /*top: 50%;*/
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -25%);
+    }
+
+}
+
 @media (max-width: 650px) {
     .card{
         width: 70px;
@@ -349,20 +357,17 @@ header img{
         height: auto;
         top: 10%;
     }
-    #stats{
-        /*top: Calc(10% - 40px);*/
-    }
 }
-@media (max-width: 480px){
-    .card{
-        width: 30px;
-        height: 45px;
-    }
-}
-@media (max-width: 330px) {
-    .card{
-        width: 25px;
-        height: 35px;
-    }
-}
+/*@media (max-width: 480px){*/
+    /*.card{*/
+        /*width: 30px;*/
+        /*height: 45px;*/
+    /*}*/
+/*}*/
+/*@media (max-width: 330px) {*/
+    /*.card{*/
+        /*width: 25px;*/
+        /*height: 35px;*/
+    /*}*/
+/*}*/
 

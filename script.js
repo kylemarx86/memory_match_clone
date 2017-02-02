@@ -188,7 +188,18 @@ function applyEventHandlers(){
     $('.reset').click(resetGame);
     $('.menuDropDown').click(displayStatsWindow);
     // $('.menuDropDown').hover(displayStatsWindow);
+
+    //not sure if the resize function needs to be activated in here
 }
+
+//temporarily located here
+function displayStatsWindow(){
+    console.log('show stats');
+    $('#stats').slideToggle();
+    // $('#stats').show();
+}
+
+
 
  //purpose: handles click events on divs with class card
  //param: none
@@ -422,11 +433,25 @@ function applyEventHandlers(){
 function initMap() {
     // var CenterOfUSA = {lat: 38, lng: -97.5};
     //this is a center of the US for my mapping purposes
-    var CenterOfUSA = {lat: 38, lng: -100};
+    // var CenterOfUSA = {lat: 38, lng: -100};
+    var CenterOfUSA = {lat: 38, lng: -96.5};
     //var CenterOfUSA = {lat: 39.828127, lng: -98.579404};  //old
 
+    //determine if the screen is large enough to have a large map
+
+    // var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    // var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    var w = $('body').width();
+    var h = $('body').height();
+    var zooming;
+    if(w >= 870){
+        zooming = 4;
+    }else{
+        zooming = 3;
+    }
+
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 4,
+        zoom: zooming,
         // zoom: 3,    //temp for testing of the mapsize
         center: CenterOfUSA,
         disableDefaultUI: true
@@ -513,7 +538,7 @@ function getDistanceBetweenParks(parkIndex1, parkIndex2) {
     return distancesArray[parkIndex1 - 1][parkIndex2];
 }
 
-function displayStatsWindow(){
-    console.log('show stats');
-    $('#stats').show();
+function resizeMap(){
+    //if the size is large enough use setZoom to set the zoom to 4
+    //else if the size is small enough use setZoom to set the zoom to 3
 }
