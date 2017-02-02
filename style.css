@@ -122,15 +122,13 @@ header img{
     padding: 0;
 }
 #map {
-    position: relative;
+    position: absolute;
     display: block;
-    bottom: 0;
-    left: 0;
+    bottom: 25%;
+    left: 50%;
+    transform: translate(-50%, 50%);
     width: 700px;
     height: 385px;
-    /*width: 788px;*/
-    /*width: 500px;*/
-    margin: auto;
     padding: 0;
 }
 
@@ -370,3 +368,15 @@ header img{
     /*}*/
 /*}*/
 
+@media (max-height: 929px){
+    #map{
+        width: 350px;
+        height: 250px;
+        /*top: 50%;*/
+        /*bottom: 25%;*/
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, -25%);
+    }
+}

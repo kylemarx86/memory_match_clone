@@ -425,20 +425,11 @@ function applyEventHandlers(){
 //functions called:
 //returns: none
 function initMap() {
-    // var CenterOfUSA = {lat: 38, lng: -97.5};
-    //this is a center of the US for my mapping purposes
-    // var CenterOfUSA = {lat: 38, lng: -100};
-    // var CenterOfMap = {lat: 38, lng: -96.5};
-    //var CenterOfUSA = {lat: 39.828127, lng: -98.579404};  //old
-
     //determine if the screen is large enough to have a large map
-
-    // var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    // var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
     var w = $('body').width();
     var h = $('body').height();
     // var zooming;
-    if(w >= 715){
+    if(w > 715 && h > 929){
         currZoom = 4;
     }else{
         currZoom = 3;
@@ -456,11 +447,6 @@ function initMap() {
     };
 
     map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
-    // google.maps.event.addDomListener(window, "resize", function() {
-    //     var center = map.getCenter();
-    //     google.maps.event.trigger(map, "resize");
-    //     map.setCenter(center);
-    // });
     google.maps.event.addDomListener(window, "resize", resizeMap);
 }
 
@@ -549,9 +535,8 @@ function resizeMap(){
 
     var w = $('body').width();
     var h = $('body').height();
-    console.log('w: ', w);
     var zoom = null;
-    if(w > 715){
+    if(w > 715 && h >= 930){
         //if the size is large enough use setZoom to set the zoom to 4
         zoom = 4;
     }else{
@@ -568,5 +553,4 @@ function resizeMap(){
         currZoom = zoom;
         map.setZoom(currZoom);
     }
-
 }
