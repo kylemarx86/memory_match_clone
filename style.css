@@ -329,7 +329,9 @@ header img{
         width: 350px;
         height: 250px;
         /*top: 50%;*/
+        /*bottom: 25%;*/
         position: absolute;
+        bottom: 0;
         left: 50%;
         transform: translate(-50%, -25%);
     }

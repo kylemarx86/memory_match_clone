@@ -551,7 +551,7 @@ function resizeMap(){
     var h = $('body').height();
     console.log('w: ', w);
     var zoom = null;
-    if(w >= 715){
+    if(w > 715){
         //if the size is large enough use setZoom to set the zoom to 4
         zoom = 4;
     }else{
