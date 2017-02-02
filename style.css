@@ -9,6 +9,7 @@
 
 body{
     margin: 0;
+    height: 100vh;
 }
 /* styling for the header*/
 header{
@@ -129,8 +130,6 @@ header img{
     height: 385px;
     /*width: 788px;*/
     /*width: 500px;*/
-    /*height: 50%;*/
-    /*margin: 0 auto;*/
     margin: auto;
     padding: 0;
 }
@@ -334,9 +333,7 @@ header img{
         left: 50%;
         transform: translate(-50%, -25%);
     }
-
 }
-
 @media (max-width: 650px) {
     .card{
         width: 70px;
