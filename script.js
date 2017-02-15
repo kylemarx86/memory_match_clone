@@ -26,6 +26,8 @@ var markers = [];
 var parksVisited = [];
 var npsLogo = null;
 var map = null;
+var centerOfMap = {lat: 38, lng: -96.5};
+var currZoom = null;
 var prevPark = null;
 var currentPark = null;
 // array showing distances between parks
@@ -187,19 +189,11 @@ function applyEventHandlers(){
     $(".card").click(clickedCard($(this)));
     $('.reset').click(resetGame);
     $('.menuDropDown').click(displayStatsWindow);
+    // $('body').resize(resizeMap);
     // $('.menuDropDown').hover(displayStatsWindow);
 
     //not sure if the resize function needs to be activated in here
 }
-
-//temporarily located here
-function displayStatsWindow(){
-    console.log('show stats');
-    $('#stats').slideToggle();
-    // $('#stats').show();
-}
-
-
 
  //purpose: handles click events on divs with class card
  //param: none
@@ -431,29 +425,19 @@ function displayStatsWindow(){
 //functions called:
 //returns: none
 function initMap() {
-    // var CenterOfUSA = {lat: 38, lng: -97.5};
-    //this is a center of the US for my mapping purposes
-    // var CenterOfUSA = {lat: 38, lng: -100};
-    var CenterOfUSA = {lat: 38, lng: -96.5};
-    //var CenterOfUSA = {lat: 39.828127, lng: -98.579404};  //old
-
     //determine if the screen is large enough to have a large map
-
-    // var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    // var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
     var w = $('body').width();
     var h = $('body').height();
-    var zooming;
-    if(w >= 870){
-        zooming = 4;
+    // var zooming;
+    if(w > 715 && h > 929){
+        currZoom = 4;
     }else{
-        zooming = 3;
+        currZoom = 3;
     }
 
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: zooming,
-        // zoom: 3,    //temp for testing of the mapsize
-        center: CenterOfUSA,
+        zoom: currZoom,
+        center: centerOfMap,
         disableDefaultUI: true
     });
     markers = [];
@@ -463,6 +447,7 @@ function initMap() {
     };
 
     map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
+    google.maps.event.addDomListener(window, "resize", resizeMap);
 }
 
 //purpose: adds a marker to the map for the designated park
@@ -522,8 +507,9 @@ function findArrayIndexFromImage(imageSrc) {
     }
     return index;
 }
-
-//distances between parks gathered based on information from Google maps
+//
+//calculates the distances between two parks based on the stored values in the distancesArray
+//Note: distances between parks gathered based on information from Google maps
 //
 function getDistanceBetweenParks(parkIndex1, parkIndex2) {
     //no need to check if the two park indices are equal because parks should never be the same
@@ -534,11 +520,37 @@ function getDistanceBetweenParks(parkIndex1, parkIndex2) {
         parkIndex1 = parkIndex2;
         parkIndex2 = temp;
     }
-
     return distancesArray[parkIndex1 - 1][parkIndex2];
 }
 
+//
+function displayStatsWindow(){
+    $('#stats').slideToggle();
+}
+
+//
+//zooms and refits the map based on the size of the body of the page
+//
 function resizeMap(){
-    //if the size is large enough use setZoom to set the zoom to 4
-    //else if the size is small enough use setZoom to set the zoom to 3
+
+    var w = $('body').width();
+    var h = $('body').height();
+    var zoom = null;
+    if(w > 715 && h >= 930){
+        //if the size is large enough use setZoom to set the zoom to 4
+        zoom = 4;
+    }else{
+        //else if the size is small enough use setZoom to set the zoom to 3
+        zoom = 3;
+    }
+    if(currZoom !== zoom){
+        // console.log('resizing');
+        var center = map.getCenter();
+        var bounds = map.getBounds();
+        google.maps.event.trigger(map, "resize");
+        map.setCenter(center);
+        map.fitBounds(bounds);
+        currZoom = zoom;
+        map.setZoom(currZoom);
+    }
 }
