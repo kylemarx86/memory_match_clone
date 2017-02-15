@@ -26,6 +26,8 @@ var markers = [];
 var parksVisited = [];
 var npsLogo = null;
 var map = null;
+var centerOfMap = {lat: 38, lng: -96.5};
+var currZoom = null;
 var prevPark = null;
 var currentPark = null;
 // array showing distances between parks
@@ -43,15 +45,15 @@ var distancesArray = [
 
 //array of national parks and their positions in geocoded form
 var parks = [
-    {officialName: 'acadia national park', name: 'acadia', pos: {lat: 44.338556, lng: -68.273335}, placeId: 'ChIJJSmiDrKjrkwRhFVV_A4i32I'},
-    {officialName: 'arches national park', name: 'arches', pos: {lat: 38.733081, lng: -109.592514}, placeId: 'ChIJUaoNhhr2yoARlcQo0WnqQk8'},
-    {officialName: 'everglades national park', name: 'everglades', pos: {lat: 25.286615, lng: -80.89865}, placeId: 'ChIJldex4mqr0IgRPtkgx65AyR8'},
-    {name: 'grandCanyon', pos: {lat: 36.106965, lng: -112.112997}},
-    {name: 'hotSprings', pos: {lat: 34.521692, lng: -93.042354}},
-    {name: 'olympic', pos: {lat: 47.802107, lng: -123.604352}},
-    {name: 'shenandoah', pos: {lat: 38.292756, lng: -78.679584 }},
-    {name: 'yellowstone', pos: {lat: 44.427968, lng: -110.588454}},
-    {name: 'yosemite', pos: {lat: 37.865101, lng: -119.538329}},
+    {properName: 'Acadia', name: 'acadia', pos: {lat: 44.338556, lng: -68.273335}, placeId: 'ChIJJSmiDrKjrkwRhFVV_A4i32I'},
+    {properName: 'Arches', name: 'arches', pos: {lat: 38.733081, lng: -109.592514}, placeId: 'ChIJUaoNhhr2yoARlcQo0WnqQk8'},
+    {properName: 'Everglades', name: 'everglades', pos: {lat: 25.286615, lng: -80.89865}, placeId: 'ChIJldex4mqr0IgRPtkgx65AyR8'},
+    {properName: 'Grand Canyon', name: 'grandCanyon', pos: {lat: 36.106965, lng: -112.112997}},
+    {properName: 'Hot Springs', name: 'hotSprings', pos: {lat: 34.521692, lng: -93.042354}},
+    {properName: 'Olympic', name: 'olympic', pos: {lat: 47.802107, lng: -123.604352}},
+    {properName: 'Shenandoah', name: 'shenandoah', pos: {lat: 38.292756, lng: -78.679584 }},
+    {properName: 'Yellowstone', name: 'yellowstone', pos: {lat: 44.427968, lng: -110.588454}},
+    {properName: 'Yosemite', name: 'yosemite', pos: {lat: 37.865101, lng: -119.538329}},
 ];
 
  //purpose: set up the game board when the document is loaded
@@ -186,6 +188,11 @@ function applyEventHandlers(){
     displayStats();
     $(".card").click(clickedCard($(this)));
     $('.reset').click(resetGame);
+    $('.menuDropDown').click(displayStatsWindow);
+    // $('body').resize(resizeMap);
+    // $('.menuDropDown').hover(displayStatsWindow);
+
+    //not sure if the resize function needs to be activated in here
 }
 
  //purpose: handles click events on divs with class card
@@ -418,15 +425,19 @@ function applyEventHandlers(){
 //functions called:
 //returns: none
 function initMap() {
-    // var CenterOfUSA = {lat: 38, lng: -97.5};
-    //this is a center of the US for my mapping purposes
-    var CenterOfUSA = {lat: 38, lng: -100};
-    //var CenterOfUSA = {lat: 39.828127, lng: -98.579404};  //old
+    //determine if the screen is large enough to have a large map
+    var w = $('body').width();
+    var h = $('body').height();
+    // var zooming;
+    if(w > 715 && h > 929){
+        currZoom = 4;
+    }else{
+        currZoom = 3;
+    }
 
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 4,
-        // zoom: 3,    //temp for testing of the mapsize
-        center: CenterOfUSA,
+        zoom: currZoom,
+        center: centerOfMap,
         disableDefaultUI: true
     });
     markers = [];
@@ -436,6 +447,7 @@ function initMap() {
     };
 
     map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
+    google.maps.event.addDomListener(window, "resize", resizeMap);
 }
 
 //purpose: adds a marker to the map for the designated park
@@ -495,8 +507,9 @@ function findArrayIndexFromImage(imageSrc) {
     }
     return index;
 }
-
-//distances between parks gathered based on information from Google maps
+//
+//calculates the distances between two parks based on the stored values in the distancesArray
+//Note: distances between parks gathered based on information from Google maps
 //
 function getDistanceBetweenParks(parkIndex1, parkIndex2) {
     //no need to check if the two park indices are equal because parks should never be the same
@@ -507,6 +520,37 @@ function getDistanceBetweenParks(parkIndex1, parkIndex2) {
         parkIndex1 = parkIndex2;
         parkIndex2 = temp;
     }
-
     return distancesArray[parkIndex1 - 1][parkIndex2];
+}
+
+//
+function displayStatsWindow(){
+    $('#stats').slideToggle();
+}
+
+//
+//zooms and refits the map based on the size of the body of the page
+//
+function resizeMap(){
+
+    var w = $('body').width();
+    var h = $('body').height();
+    var zoom = null;
+    if(w > 715 && h >= 930){
+        //if the size is large enough use setZoom to set the zoom to 4
+        zoom = 4;
+    }else{
+        //else if the size is small enough use setZoom to set the zoom to 3
+        zoom = 3;
+    }
+    if(currZoom !== zoom){
+        // console.log('resizing');
+        var center = map.getCenter();
+        var bounds = map.getBounds();
+        google.maps.event.trigger(map, "resize");
+        map.setCenter(center);
+        map.fitBounds(bounds);
+        currZoom = zoom;
+        map.setZoom(currZoom);
+    }
 }
