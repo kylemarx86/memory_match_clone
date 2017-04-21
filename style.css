@@ -121,12 +121,17 @@ header img{
     margin: 0;
     padding: 0;
 }
+.mapContainer{
+    position: relative;
+    display: inline-block;
+    height: 50%;
+    width: 100%;
+}
 #map {
     position: absolute;
-    display: block;
-    bottom: 25%;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, 50%);
+    transform: translate(-50%, -50%);
     width: 700px;
     height: 385px;
     padding: 0;
@@ -326,12 +331,6 @@ header img{
     #map{
         width: 350px;
         height: 250px;
-        /*top: 50%;*/
-        /*bottom: 25%;*/
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translate(-50%, -25%);
     }
 }
 @media (max-width: 650px) {
@@ -355,28 +354,10 @@ header img{
         top: 10%;
     }
 }
-/*@media (max-width: 480px){*/
-    /*.card{*/
-        /*width: 30px;*/
-        /*height: 45px;*/
-    /*}*/
-/*}*/
-/*@media (max-width: 330px) {*/
-    /*.card{*/
-        /*width: 25px;*/
-        /*height: 35px;*/
-    /*}*/
-/*}*/
 
 @media (max-height: 929px){
     #map{
         width: 350px;
         height: 250px;
-        /*top: 50%;*/
-        /*bottom: 25%;*/
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translate(-50%, -25%);
     }
 }
