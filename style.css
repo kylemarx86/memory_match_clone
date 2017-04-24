@@ -361,3 +361,33 @@ header img{
         height: 250px;
     }
 }
+/*portrait media queries*/
+/*portrait - iPad Pro*/
+@media screen and (orientation: portrait) and (max-width: 1024px) and (max-height: 1366px){
+    
+}
+/*portrait -  iPhone 5, iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P*/
+@media screen and (orientation: portrait) and (max-width: 980px) and (max-height: 1743px){
+    
+}
+/*portrait - Nexus 5X*/
+@media screen and (orientation: portrait) and (max-width: 980px) and (max-height: 1569px){
+
+}
+/*portrait - iPad*/
+@media screen and (orientation: portrait) and (max-width: 980px) and (max-height: 1306px){
+
+}
+/*landscape media queries*/
+/*landscape - iPad Pro*/
+@media screen and (orientation: landscape) and (max-width: 1366px){
+    
+}
+/*landscape - iPad*/
+@media screen and (orientation: landscape) and (max-width: 1306px){
+    
+}
+/*landscape - iPhone 5, iPhone 6, iPhone 6 Plus, Nexus 5X, Nexus 6P, Galaxy S5*/
+@media screen and (orientation: landscape) and (max-width: 980px) {
+    
+}
