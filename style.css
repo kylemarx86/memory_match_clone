@@ -79,18 +79,18 @@ header img{
     top: 0;
     z-index: 5;
     height: auto;
-    /*border: 1px solid black;*/
-
 }
 /* styling for the side stats bar*/
 .statsLabel{
-    height: 30px;
+    /*height: 30px;*/
     width: 100%;
     background-color: inherit;
     clear: left;
     text-align: center;
     font-size: 1.25em;
     color: white;
+    margin: 5px 0;
+    /*vertical-align: middle;*/
 }
 .valueContainer{
     display: flex;
