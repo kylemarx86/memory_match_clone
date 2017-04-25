@@ -429,7 +429,8 @@ function initMap() {
     var w = $('body').width();
     var h = $('body').height();
     // var zooming;
-    if(w > 715 && h > 929){
+    //need to adjust this
+    if(w > 715 && h > 895){
         currZoom = 4;
     }else{
         currZoom = 3;
@@ -536,7 +537,7 @@ function resizeMap(){
     var w = $('body').width();
     var h = $('body').height();
     var zoom = null;
-    if(w > 715 && h >= 930){
+    if(w > 715 && h >= 895){
         //if the size is large enough use setZoom to set the zoom to 4
         zoom = 4;
     }else{
