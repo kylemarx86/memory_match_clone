@@ -100,7 +100,7 @@ var parks = [
          var singleCard = createSingleCard(valueFromArray);                    //create one card with the value associated with an image
          initArray.splice(randomIndex, 1);                                  //remove the randomly chosen number from the array
 
-         $('#cardArea').append(singleCard);
+         $('#cardContainer').append(singleCard);
      }
 
      $('#gameWonModal').modal({show: false});
@@ -389,7 +389,7 @@ function applyEventHandlers(){
      resetStats();
      displayStats();
 
-     $('#cardArea').empty();
+     $('#cardContainer').empty();
 
      //i need to clean this area up. I don't believe any of the commented out code is necessary because it is handled in the initialize
 
@@ -397,7 +397,7 @@ function applyEventHandlers(){
      // $('.card').removeClass('cardClicked matched');         //makes all cards clickable once more by removing 'cardClicked' and 'matched' classes
      $('.card').off('click');                               //temporarily removes all click handlers, so that they won't fire twice when restarted
      // $('.card').click(clickedCard($(this)));                //adds the click handler for the 'card' class  //click handlers applied when new game board generated
-     $('#gameWon').css('display', 'none');                  //reset win features        //will need to be placed outside of cardArea
+     $('#gameWon').css('display', 'none');                  //reset win features        //will need to be placed outside of cardContainer
      initMap();
 
      $('.reset').off('click');
