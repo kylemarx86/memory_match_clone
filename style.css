@@ -130,6 +130,7 @@ header img{
     position: absolute;
     top: 50%;
     left: 50%;
+    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     width: 700px;
     height: 385px;
@@ -142,7 +143,7 @@ header img{
     position: relative;
     width: 100px;
     height: 150px;
-    display:inline-block;
+    display: inline-block;
     margin: 5px;
     border-radius: 10%;
     z-index: 1;
@@ -169,8 +170,8 @@ header img{
     background-repeat: no-repeat;
     background-position: center;
     /*sets up front of card for the transition when clicked*/
-    transform: rotateY(-180deg);
     -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
 }
 /*remember back of card has the NPS logo image*/
 .back {
@@ -184,17 +185,17 @@ header img{
     backface-visibility: hidden;
 }
 .card.cardClicked .front {
-    transform: rotateY(0deg);
     -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
 }
 .card.cardClicked .back {
-    transform: rotateY(-180deg);
     -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
 }
 .card.matched .front{
     /*performs the transition when clicked*/
-    transform: rotateY(0deg);
     -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
 }
 .card.matched .back{
     visibility: hidden;
