@@ -278,7 +278,7 @@ header img{
 }*/
 
 
-@media screen and (max-height: 894px) {
+@media screen and (max-height: 895px) {
     #map {
         width: 350px;
         height: 230px;
@@ -367,7 +367,6 @@ header img{
         width: 70px;
         height: 105px;
     }
-    
     #map{
         width: 350px;
         height: 230px;

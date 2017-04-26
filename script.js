@@ -426,11 +426,12 @@ function applyEventHandlers(){
 //returns: none
 function initMap() {
     //determine if the screen is large enough to have a large map
+    var scrollbarWidth = 17;
     var w = $('body').width();
     var h = $('body').height();
     // var zooming;
     //need to adjust this
-    if(w > 715 && h > 895){
+    if(w + scrollbarWidth > 730 && h > 895){
         currZoom = 4;
     }else{
         currZoom = 3;
@@ -537,7 +538,7 @@ function resizeMap(){
     var w = $('body').width();
     var h = $('body').height();
     var zoom = null;
-    if(w > 715 && h >= 895){
+    if(w > 730 && h > 895){
         //if the size is large enough use setZoom to set the zoom to 4
         zoom = 4;
     }else{
