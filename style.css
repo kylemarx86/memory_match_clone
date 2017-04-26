@@ -263,11 +263,11 @@ header img{
     display: block;
 }
 /*may not be necessary*/
-@media (max-width: 1800px) {
-    /*.card{
+/*@media (max-width: 1800px) {
+    .card{
         width: 100px;
         height: 150px;
-    }*/
+    }
     #map{
         width: 700px;
         height: 385px;
@@ -275,7 +275,31 @@ header img{
     .menuDropDown{
         display: none;
     }
+}*/
+
+
+@media screen and (max-height: 894px){
+    #map {
+        width: 350px;
+        height: 230px;
+    }
 }
+@media screen and (min-width: 1367px) and (max-height: 710px){
+    .card{
+        width: 80px;
+        height: 120px;
+    }
+}
+@media screen and (min-width: 1367px) and (max-height: 600px){
+    .card{
+        width: 60px;
+        height: 90px;
+    }
+}
+
+
+
+
 /*landscape - iPad Pro*/
 @media screen and (orientation: landscape) and (max-width: 1366px){
     .card{
@@ -296,7 +320,6 @@ header img{
         height: 120px;
     }
 }
-
 @media (max-width: 1160px) {
     .card{
         width: 80px;
@@ -392,12 +415,16 @@ header img{
         top: 10%;
     }
 }
+
+
+
+/*
 @media (max-height: 894px){
     #map{
         width: 350px;
         height: 230px;
     }
-}
+}*/
 
 
 /*landscape media queries*/
