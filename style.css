@@ -27,6 +27,9 @@ header h1{
     display: block;
 }
 .linkContainer{
+    display: -webkit-flex;
+    -webkit-flex-direction: column;
+    -webkit-justify-content: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -91,6 +94,9 @@ header img{
     margin: 5px 0;
 }
 .valueContainer{
+    display: -webkit-flex;
+    -webkit-flex-direction: column;
+    -webkit-justify-content: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -109,6 +115,8 @@ header img{
 /*styling for game area*/
 #cardContainer{
     position: relative;
+    display: -webkit-inline-flex;
+    -webkit-flex-wrap: wrap;
     display: inline-flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -323,6 +331,7 @@ header img{
         border: 1px solid black;
     }
     .menuDropDown{
+        display: -webkit-flex;
         display: flex;
     }
     .mainContent{
