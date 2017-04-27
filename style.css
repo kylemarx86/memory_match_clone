@@ -132,11 +132,11 @@ header img{
     margin: 0;
     padding: 0;
 
-   -webkit-perspective: 1000;
+    /*-webkit-perspective: 1000;
    -moz-perspective: 1000;
    -ms-perspective: 1000;
    -o-perspective: 1000;
-   perspective: 1000;
+   perspective: 1000;*/
 }
 .mapContainer{
     position: relative;
@@ -166,16 +166,17 @@ header img{
     border-radius: 10%;
     z-index: 1;
 
-   /*-webkit-transform-style: preserve-3d;*/
    -webkit-transition: 0.5s;
-   /*-moz-transform-style: preserve-3d;*/
    -moz-transition: 0.5s;
-   /*-ms-transform-style: preserve-3d;*/
    -ms-transition: 0.5s;
-   /*-o-transform-style: preserve-3d;*/
    -o-transition: 0.5s;
-   /*transform-style: preserve-3d;*/
    transition: 0.5s;
+
+   -webkit-perspective: 1000;
+   -moz-perspective: 1000;
+   -ms-perspective: 1000;
+   -o-perspective: 1000;
+   perspective: 1000;
 }
 /* hide back of pane during swap */
 .front, .back {
