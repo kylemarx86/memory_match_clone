@@ -133,8 +133,10 @@ function createSingleCard(valueFromArray){
     var imgSource = findImageSource(valueFromArray);
     var generatedCard = $('<div>').addClass('card');
     var generatedFront = $('<div>').addClass('front');
+    var text = $('<div>').addClass('text').text(parks[valueFromArray].properName);
     var generatedBack = $('<div>').addClass('back');
     generatedFront.css('background-image', 'url(' + imgSource + ')');
+    $(generatedFront).append(text);
     $(generatedCard).append(generatedFront, generatedBack);
 
     return generatedCard;

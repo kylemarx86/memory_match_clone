@@ -204,6 +204,18 @@ header img{
     transform: rotateY(-180deg);
     box-shadow: -1px 1px black;
 }
+.front .text{
+    display: none;
+    position: absolute;
+    top: 1%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    color: black;
+    text-align: center;
+    font-size: small;
+    width: 100%;
+}
 /*remember back of card has the NPS logo image*/
 .back {
     background-color: saddlebrown;
@@ -223,6 +235,9 @@ header img{
     transform: rotateY(0deg) translateZ(1px);
     box-shadow: 1px 1px black;
 }
+.card.cardClicked .front .text{
+    display: block;
+}
 .card.cardClicked .back {
     -webkit-transform: rotateY(-180deg) translateZ(1px);
     transform: rotateY(-180deg) translateZ(1px);
@@ -233,6 +248,9 @@ header img{
     -webkit-transform: rotateY(0deg);
     transform: rotateY(0deg);
     box-shadow: 1px 1px black;
+}
+.card.matched .front .text{
+    display: block;
 }
 .card.matched .back{
     visibility: hidden;
