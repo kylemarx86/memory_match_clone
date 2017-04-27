@@ -166,12 +166,6 @@ header img{
     border-radius: 10%;
     z-index: 1;
 
-   -webkit-transition: 0.5s;
-   -moz-transition: 0.5s;
-   -ms-transition: 0.5s;
-   -o-transition: 0.5s;
-   transition: 0.5s;
-
    -webkit-perspective: 1000;
    -moz-perspective: 1000;
    -ms-perspective: 1000;
@@ -198,9 +192,6 @@ header img{
 
     -webkit-transition: -webkit-transform 0.5s;
     transition: transform 0.5s;
-
-    /*-webkit-transition: -webkit-transform 2.5s;
-    transition: transform 2.5s;*/
 }
 /*remember front of card has the coin image*/
 .front {
@@ -212,9 +203,6 @@ header img{
     -webkit-transform: rotateY(-180deg);
     transform: rotateY(-180deg);
     box-shadow: -1px 1px black;
-
-    /*-webkit-backface-visibility: hidden;
-    backface-visibility: hidden;*/
 }
 /*remember back of card has the NPS logo image*/
 .back {
@@ -223,27 +211,22 @@ header img{
     background-size: 100% 100%;
     box-shadow: 1px 1px black;
     z-index: 2;
-
-    /*-webkit-backface-visibility: visible;
-    backface-visibility: visible;*/
 }
 .card.cardClicked .front {
     -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
     backface-visibility: hidden;
 
     -webkit-transform: rotateY(0deg) translateZ(1px);
     transform: rotateY(0deg) translateZ(1px);
     box-shadow: 1px 1px black;
-    /*z-index: 2;*/
 }
 .card.cardClicked .back {
     -webkit-transform: rotateY(-180deg) translateZ(1px);
     transform: rotateY(-180deg) translateZ(1px);
     box-shadow: -1px 1px black;
-    /*z-index: 1;*/
-
-    /*-webkit-backface-visibility: hidden;
-    backface-visibility: hidden;*/
 }
 .card.matched .front{
     /*performs the transition when clicked*/
