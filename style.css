@@ -27,6 +27,9 @@ header h1{
     display: block;
 }
 .linkContainer{
+    display: -webkit-flex;
+    -webkit-flex-direction: column;
+    -webkit-justify-content: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -91,6 +94,9 @@ header img{
     margin: 5px 0;
 }
 .valueContainer{
+    display: -webkit-flex;
+    -webkit-flex-direction: column;
+    -webkit-justify-content: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -109,6 +115,8 @@ header img{
 /*styling for game area*/
 #cardContainer{
     position: relative;
+    display: -webkit-inline-flex;
+    -webkit-flex-wrap: wrap;
     display: inline-flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -130,6 +138,7 @@ header img{
     position: absolute;
     top: 50%;
     left: 50%;
+    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     width: 700px;
     height: 385px;
@@ -142,7 +151,7 @@ header img{
     position: relative;
     width: 100px;
     height: 150px;
-    display:inline-block;
+    display: inline-block;
     margin: 5px;
     border-radius: 10%;
     z-index: 1;
@@ -169,8 +178,9 @@ header img{
     background-repeat: no-repeat;
     background-position: center;
     /*sets up front of card for the transition when clicked*/
-    transform: rotateY(-180deg);
     -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+    box-shadow: -1px 1px black;
 }
 /*remember back of card has the NPS logo image*/
 .back {
@@ -179,22 +189,26 @@ header img{
 
     background-image: url('resources/nps_logo_transparent_large.png');
     background-size: 100% 100%;
+    box-shadow: 1px 1px black;
 
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
 .card.cardClicked .front {
-    transform: rotateY(0deg);
     -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    box-shadow: 1px 1px black;
 }
 .card.cardClicked .back {
-    transform: rotateY(-180deg);
     -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+    box-shadow: -1px 1px black;
 }
 .card.matched .front{
     /*performs the transition when clicked*/
-    transform: rotateY(0deg);
     -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    box-shadow: 1px 1px black;
 }
 .card.matched .back{
     visibility: hidden;
@@ -317,6 +331,7 @@ header img{
         border: 1px solid black;
     }
     .menuDropDown{
+        display: -webkit-flex;
         display: flex;
     }
     .mainContent{
