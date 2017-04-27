@@ -135,7 +135,7 @@ function createSingleCard(valueFromArray){
     var generatedFront = $('<div>').addClass('front');
     var text = $('<div>').addClass('text').text(parks[valueFromArray].properName);
     var generatedBack = $('<div>').addClass('back');
-    generatedFront.css('background-image', 'url(' + imgSource + ')');
+    generatedFront.css('background-image', `url(${imgSource})`);
     $(generatedFront).append(text);
     $(generatedCard).append(generatedFront, generatedBack);
 
@@ -363,7 +363,7 @@ function applyEventHandlers(){
      $('.gamesPlayed .value').text(gamesPlayed);
      $('.attempts .value').text(attempts);
      $('.accuracy .value').text(accuracy);
-     $('.distance .value').text(distanceTraveled + " miles");
+     $('.distance .value').text(`${distanceTraveled} miles`);
  }
 
  //purpose: calculates the user's accuracy. If the attempts are zero, it sets the accuracy to zero to prevent dividing by zero
@@ -374,9 +374,9 @@ function applyEventHandlers(){
  //returns: none
  function calculateAccuracy(){
      if(attempts === 0){
-         accuracy = 0 + "%";
+         accuracy = `0%`;
      }else{
-         accuracy = Math.floor((matches / attempts) *100) + "%";
+         accuracy = `${Math.floor((matches / attempts) *100)}%`;
      }
  }
 
@@ -393,12 +393,7 @@ function applyEventHandlers(){
 
      $('#cardContainer').empty();
 
-     //i need to clean this area up. I don't believe any of the commented out code is necessary because it is handled in the initialize
-
-     // $('.back').css('display', 'initial');                  //makes all card back reappear
-     // $('.card').removeClass('cardClicked matched');         //makes all cards clickable once more by removing 'cardClicked' and 'matched' classes
      $('.card').off('click');                               //temporarily removes all click handlers, so that they won't fire twice when restarted
-     // $('.card').click(clickedCard($(this)));                //adds the click handler for the 'card' class  //click handlers applied when new game board generated
      $('#gameWon').css('display', 'none');                  //reset win features        //will need to be placed outside of cardContainer
      initMap();
 
@@ -431,7 +426,6 @@ function initMap() {
     var scrollbarWidth = 17;
     var w = $('body').width();
     var h = $('body').height();
-    // var zooming;
     //need to adjust this
     if(w + scrollbarWidth > 730 && h > 895){
         currZoom = 4;
@@ -548,7 +542,6 @@ function resizeMap(){
         zoom = 3;
     }
     if(currZoom !== zoom){
-        // console.log('resizing');
         var center = map.getCenter();
         var bounds = map.getBounds();
         google.maps.event.trigger(map, "resize");
