@@ -331,6 +331,9 @@ header img{
         width: 80px;
         height: 120px;
     }
+    .front .text{
+        font-size: smaller;
+    }
 }
 @media screen and (min-width: 1161px) and (max-height: 600px) {
     .card{
@@ -343,6 +346,9 @@ header img{
     .card{
         width: 80px;
         height: 120px;
+    }
+    .front .text{
+        font-size: smaller;
     }
 }
 @media (max-width: 1160px) and (max-height: 600px){
@@ -493,6 +499,9 @@ header img{
         width: 80px;
         height: 120px;
     }
+    .front .text{
+        font-size: smaller;
+    }
 }
 /*portrait -  iPhone 5, iPhone 6, iPhone 6 Plus, Galaxy S5, Nexus 6P, Nexus 5X*/
 @media screen and (width: 980px) and (min-height: 1569px) and (max-height: 1743px) {
@@ -521,6 +530,9 @@ header img{
     .card{
         width: 60px;
         height: 90px;
+    }
+    .front .text{
+        font-size: smaller;
     }
     #stats input{
         font-size: 1.25em;
