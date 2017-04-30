@@ -232,11 +232,26 @@ header img{
 .card.cardClicked .front .text{
     display: block;
 }
+:not(.cardClicked) .front .text{
+    display: block;
+    animation: .05s fadeOut;
+    animation-fill-mode: forwards;
+}
+@keyframes fadeOut{
+    99% {
+        display: block;
+    }
+    100% {
+        display: none;
+    }
+}
 .card.cardClicked .back {
     -webkit-transform: rotateY(-180deg) translateZ(1px);
     transform: rotateY(-180deg) translateZ(1px);
     box-shadow: -1px 1px black;
 }
+
+
 .card.matched .front{
     /*performs the transition when clicked*/
     -webkit-transform: rotateY(0deg);
